@@ -53,6 +53,8 @@ private:
 
 	void Draw2UPLabel();
 
+	void DrawHighScoreLabel();
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -89,6 +89,7 @@ bool HelloWorld::init()
 
 	Draw1UPLabel();
 	Draw2UPLabel();
+	DrawHighScoreLabel();
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
@@ -136,6 +137,24 @@ void HelloWorld::Draw2UPLabel()
 
 	// position the label on the screen
 	float x = m_OpenGLOrigin.x + 3 * m_OpenGLVisibleSize.width / 4;
+	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
+	label->setPosition(Vec2(x, y));
+
+	// add the label as a child to this layer
+	this->addChild(label, 1);
+}
+
+void HelloWorld::DrawHighScoreLabel()
+{
+	auto label = Label::createWithTTF("HIGH SCORE", "fonts/arial.ttf", 70);
+	if (label == nullptr)
+	{
+		problemLoading("'fonts/Marker Felt.ttf'");
+		return;
+	}
+
+	// position the label on the screen
+	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
 	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
 	label->setPosition(Vec2(x, y));
 
