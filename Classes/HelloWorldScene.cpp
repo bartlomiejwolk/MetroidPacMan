@@ -92,6 +92,7 @@ bool HelloWorld::init()
 	Draw2UPLabel();
 	DrawHighScoreLabel();
 	DrawCharacterNicknames();
+	DrawPointsInfo();
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
@@ -233,6 +234,38 @@ void HelloWorld::DrawCharacterNicknames()
 	}
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.3;
 	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.55;
+	label->setPosition(Vec2(x, y));
+	this->addChild(label, 1);
+}
+
+void HelloWorld::DrawPointsInfo()
+{
+	Label *label = nullptr;
+
+	float x = 0;
+	float y = 0;
+
+	// draw "10 PTS"
+	label = Label::createWithTTF("10 PTS", m_FontFilePath, m_FontSize);
+	if (label == nullptr)
+	{
+		problemLoading(m_FontFilePath.c_str());
+		return;
+	}
+	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
+	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.35;
+	label->setPosition(Vec2(x, y));
+	this->addChild(label, 1);
+
+	// draw "20 PTS"
+	label = Label::createWithTTF("20 PTS", m_FontFilePath, m_FontSize);
+	if (label == nullptr)
+	{
+		problemLoading(m_FontFilePath.c_str());
+		return;
+	}
+	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
+	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.3;
 	label->setPosition(Vec2(x, y));
 	this->addChild(label, 1);
 }

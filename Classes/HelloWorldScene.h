@@ -52,7 +52,7 @@ private:
 	// Font used for all text in the game.
 	const std::string m_FontFilePath = "fonts/GameCube.ttf";
 
-	// Font size used for almost all text in the game.
+	// Font size used for all text in the game.
 	const int m_FontSize = 70;
 
 	void Draw1UPLabel();
@@ -62,6 +62,8 @@ private:
 	void DrawHighScoreLabel();
 
 	void DrawCharacterNicknames();
+
+	void DrawPointsInfo();
 
 };
 
