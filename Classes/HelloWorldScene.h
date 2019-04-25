@@ -55,6 +55,8 @@ private:
 
 	void DrawHighScoreLabel();
 
+	void DrawCharacterNicknames();
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__

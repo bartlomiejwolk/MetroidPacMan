@@ -90,6 +90,7 @@ bool HelloWorld::init()
 	Draw1UPLabel();
 	Draw2UPLabel();
 	DrawHighScoreLabel();
+	DrawCharacterNicknames();
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
@@ -159,6 +160,73 @@ void HelloWorld::DrawHighScoreLabel()
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
+	this->addChild(label, 1);
+}
+
+void HelloWorld::DrawCharacterNicknames()
+{
+	Label *label = nullptr;
+	float x = 0;
+	float y = 0;
+
+	// draw "CHARACTER / NICKNAME"
+	label = Label::createWithTTF("CHARACTER / NICKNAME", "fonts/arial.ttf", 70);
+	if (label == nullptr)
+	{
+		problemLoading("'fonts/Marker Felt.ttf'");
+		return;
+	}
+	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
+	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.8;
+	label->setPosition(Vec2(x, y));
+	this->addChild(label, 1);
+
+	// draw OIKAKE----"AKABEI"
+	label = Label::createWithTTF("OIKAKE----\"AKABEI\"", "fonts/arial.ttf", 70);
+	if (label == nullptr)
+	{
+		problemLoading("'fonts/Marker Felt.ttf'");
+		return;
+	}
+	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
+	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.7;
+	label->setPosition(Vec2(x, y));
+	this->addChild(label, 1);
+
+	// draw MACHIBUSE----"PINKY"
+	label = Label::createWithTTF("MACHIBUSE----\"PINKY\"", "fonts/arial.ttf", 70);
+	if (label == nullptr)
+	{
+		problemLoading("'fonts/Marker Felt.ttf'");
+		return;
+	}
+	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
+	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.65;
+	label->setPosition(Vec2(x, y));
+	this->addChild(label, 1);
+
+	// draw KIMAGURE----"AOSUKE"
+	label = Label::createWithTTF("KIMAGURE----\"AOSUKE\"", "fonts/arial.ttf", 70);
+	if (label == nullptr)
+	{
+		problemLoading("'fonts/Marker Felt.ttf'");
+		return;
+	}
+	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
+	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.6;
+	label->setPosition(Vec2(x, y));
+	this->addChild(label, 1);
+
+	// draw OTOBOKE----"GUZUTA"
+	label = Label::createWithTTF("OTOBOKE----\"GUZUTA\"", "fonts/arial.ttf", 70);
+	if (label == nullptr)
+	{
+		problemLoading("'fonts/Marker Felt.ttf'");
+		return;
+	}
+	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
+	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.55;
+	label->setPosition(Vec2(x, y));
 	this->addChild(label, 1);
 }
 
