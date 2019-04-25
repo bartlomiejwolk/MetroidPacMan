@@ -87,20 +87,8 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
 
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    if (label == nullptr)
-    {
-        problemLoading("'fonts/Marker Felt.ttf'");
-    }
-    else
-    {
-        // position the label on the center of the screen
-        label->setPosition(Vec2(m_OpenGLOrigin.x + m_OpenGLVisibleSize.width/2,
-                                m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height));
+	Draw1UPLabel();
 
-        // add the label as a child to this layer
-        this->addChild(label, 1);
-    }
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
@@ -119,6 +107,23 @@ bool HelloWorld::init()
     return true;
 }
 
+void HelloWorld::Draw1UPLabel()
+{
+	auto label = Label::createWithTTF("1UP", "fonts/arial.ttf", 70);
+	if (label == nullptr)
+	{
+		problemLoading("'fonts/Marker Felt.ttf'");
+		return;
+	}
+
+	// position the label on the screen
+	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 4;
+	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
+	label->setPosition(Vec2(x, y));
+
+	// add the label as a child to this layer
+	this->addChild(label, 1);
+}
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {

@@ -33,7 +33,7 @@ public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
-    
+
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
@@ -48,6 +48,9 @@ private:
 	// Visible origin coordinate of the OpenGL view in points.
 	// Initialized in `init()`.
 	cocos2d::Vec2 m_OpenGLOrigin;
+
+	void Draw1UPLabel();
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
