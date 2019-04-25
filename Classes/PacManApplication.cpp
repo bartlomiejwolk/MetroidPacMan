@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "PacManApplication.h"
-#include "HelloWorldScene.h"
+#include "IntroScene.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -123,7 +123,7 @@ bool PacManApplication::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = IntroScene::createScene();
 
     // run
     director->runWithScene(scene);

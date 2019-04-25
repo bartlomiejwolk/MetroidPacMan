@@ -22,15 +22,15 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "HelloWorldScene.h"
+#include "IntroScene.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
 
 
-Scene* HelloWorld::createScene()
+Scene* IntroScene::createScene()
 {
-    return HelloWorld::create();
+    return IntroScene::create();
 }
 
 // Print useful error message instead of segfaulting when files are not there.
@@ -41,7 +41,7 @@ static void problemLoading(const char* filename)
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool IntroScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -61,7 +61,7 @@ bool HelloWorld::init()
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+                                           CC_CALLBACK_1(IntroScene::menuCloseCallback, this));
 
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
@@ -101,7 +101,7 @@ bool HelloWorld::init()
     return true;
 }
 
-void HelloWorld::RunPacManAnimation()
+void IntroScene::RunPacManAnimation()
 {
 	// add "HelloWorld" splash screen"
 	auto sprite = Sprite::create("HelloWorld.png");
@@ -122,7 +122,7 @@ void HelloWorld::RunPacManAnimation()
 	sprite->runAction(action);
 }
 
-void HelloWorld::Draw1UPLabel()
+void IntroScene::Draw1UPLabel()
 {
 	auto label = Label::createWithTTF("1UP", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
@@ -141,7 +141,7 @@ void HelloWorld::Draw1UPLabel()
 	this->addChild(label, 1);
 }
 
-void HelloWorld::Draw2UPLabel()
+void IntroScene::Draw2UPLabel()
 {
 	auto label = Label::createWithTTF("2UP", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
@@ -160,7 +160,7 @@ void HelloWorld::Draw2UPLabel()
 	this->addChild(label, 1);
 }
 
-void HelloWorld::DrawHighScoreLabel()
+void IntroScene::DrawHighScoreLabel()
 {
 	auto label = Label::createWithTTF("HIGH SCORE", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
@@ -178,7 +178,7 @@ void HelloWorld::DrawHighScoreLabel()
 	this->addChild(label, 1);
 }
 
-void HelloWorld::DrawCharacterNicknames()
+void IntroScene::DrawCharacterNicknames()
 {
 	Label *label = nullptr;
 	
@@ -250,7 +250,7 @@ void HelloWorld::DrawCharacterNicknames()
 	this->addChild(label, 1);
 }
 
-void HelloWorld::DrawPointsInfo()
+void IntroScene::DrawPointsInfo()
 {
 	Label *label = nullptr;
 
@@ -282,7 +282,7 @@ void HelloWorld::DrawPointsInfo()
 	this->addChild(label, 1);
 }
 
-void HelloWorld::DrawCompanyName()
+void IntroScene::DrawCompanyName()
 {
 	auto label = Label::createWithTTF("metroidsnes", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
@@ -300,7 +300,7 @@ void HelloWorld::DrawCompanyName()
 	this->addChild(label, 1);
 }
 
-void HelloWorld::DrawCredits() 
+void IntroScene::DrawCredits() 
 {
 	auto label = Label::createWithTTF("CREDIT  0", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
@@ -319,7 +319,7 @@ void HelloWorld::DrawCredits()
 	this->addChild(label, 1);
 }
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void IntroScene::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
