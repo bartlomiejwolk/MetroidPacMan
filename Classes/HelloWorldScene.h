@@ -39,6 +39,15 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+
+private:
+	// Visible size of the OpenGL view in points.
+	// Initialized in `init()`.
+	cocos2d::Size m_OpenGLVisibleSize;
+
+	// Visible origin coordinate of the OpenGL view in points.
+	// Initialized in `init()`.
+	cocos2d::Vec2 m_OpenGLOrigin;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

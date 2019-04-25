@@ -49,8 +49,8 @@ bool HelloWorld::init()
         return false;
     }
 
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
+    m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -71,8 +71,8 @@ bool HelloWorld::init()
     else
     {
 		Size contentSize = closeItem->getContentSize();
-        float x = origin.x + visibleSize.width - contentSize.width/2;
-        float y = origin.y + contentSize.height/2;
+        float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width - contentSize.width/2;
+        float y = m_OpenGLOrigin.y + contentSize.height/2;
         closeItem->setPosition(Vec2(x,y));
     }
 
@@ -95,8 +95,8 @@ bool HelloWorld::init()
     else
     {
         // position the label on the center of the screen
-        label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                                origin.y + visibleSize.height - label->getContentSize().height));
+        label->setPosition(Vec2(m_OpenGLOrigin.x + m_OpenGLVisibleSize.width/2,
+                                m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height));
 
         // add the label as a child to this layer
         this->addChild(label, 1);
@@ -111,7 +111,7 @@ bool HelloWorld::init()
     else
     {
         // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+        sprite->setPosition(Vec2(m_OpenGLVisibleSize.width/2 + m_OpenGLOrigin.x, m_OpenGLVisibleSize.height/2 + m_OpenGLOrigin.y));
 
         // add the sprite as a child to this layer
         this->addChild(sprite, 0);
