@@ -137,7 +137,7 @@ void HelloWorld::Draw2UPLabel()
 	}
 
 	// position the label on the screen
-	float x = m_OpenGLOrigin.x + 3 * m_OpenGLVisibleSize.width / 4;
+	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.75;
 	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
 	label->setPosition(Vec2(x, y));
 
