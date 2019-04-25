@@ -65,6 +65,8 @@ private:
 
 	void DrawPointsInfo();
 
+	void DrawCompanyName();
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__

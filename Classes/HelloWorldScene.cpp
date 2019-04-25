@@ -93,6 +93,7 @@ bool HelloWorld::init()
 	DrawHighScoreLabel();
 	DrawCharacterNicknames();
 	DrawPointsInfo();
+	DrawCompanyName();
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
@@ -113,7 +114,6 @@ bool HelloWorld::init()
 
 void HelloWorld::Draw1UPLabel()
 {
-	// TODO create const for font filepath
 	auto label = Label::createWithTTF("1UP", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
 	{
@@ -267,6 +267,24 @@ void HelloWorld::DrawPointsInfo()
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
 	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.3;
 	label->setPosition(Vec2(x, y));
+	this->addChild(label, 1);
+}
+
+void HelloWorld::DrawCompanyName()
+{
+	auto label = Label::createWithTTF("metroidsnes", m_FontFilePath, m_FontSize);
+	if (label == nullptr)
+	{
+		problemLoading(m_FontFilePath.c_str());
+		return;
+	}
+
+	// position the label on the screen
+	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
+	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.15;
+	label->setPosition(Vec2(x, y));
+
+	// add the label as a child to this layer
 	this->addChild(label, 1);
 }
 
