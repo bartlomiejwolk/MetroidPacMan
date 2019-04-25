@@ -43,10 +43,10 @@ using namespace CocosDenshion;
 USING_NS_CC;
 
 // all sizes have 4/3 aspect ratio
-static cocos2d::Size designResolutionSize = cocos2d::Size(1440, 1080);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(640, 480);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(1440, 1080);
+static cocos2d::Size designResolutionSize = cocos2d::Size(2880, 2160);
+static cocos2d::Size smallResolutionSize = cocos2d::Size(1024, 768);
+static cocos2d::Size mediumResolutionSize = cocos2d::Size(1440, 1080);
+static cocos2d::Size largeResolutionSize = cocos2d::Size(2880, 2160);
 
 PacManApplication::PacManApplication()
 {
