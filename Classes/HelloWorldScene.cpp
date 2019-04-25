@@ -94,6 +94,7 @@ bool HelloWorld::init()
 	DrawCharacterNicknames();
 	DrawPointsInfo();
 	DrawCompanyName();
+	DrawCredits();
 
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
@@ -124,6 +125,7 @@ void HelloWorld::Draw1UPLabel()
 	// position the label on the screen
 	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 4;
 	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
+	label->setAnchorPoint(Vec2(0, 0));
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
@@ -142,6 +144,7 @@ void HelloWorld::Draw2UPLabel()
 	// position the label on the screen
 	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.75;
 	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
+	label->setAnchorPoint(Vec2(1, 0));
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
@@ -282,6 +285,25 @@ void HelloWorld::DrawCompanyName()
 	// position the label on the screen
 	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
 	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.15;
+	label->setPosition(Vec2(x, y));
+
+	// add the label as a child to this layer
+	this->addChild(label, 1);
+}
+
+void HelloWorld::DrawCredits() 
+{
+	auto label = Label::createWithTTF("CREDIT  0", m_FontFilePath, m_FontSize);
+	if (label == nullptr)
+	{
+		problemLoading(m_FontFilePath.c_str());
+		return;
+	}
+
+	// position the label on the screen
+	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.25;
+	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.01;
+	label->setAnchorPoint(Vec2(0, 0));
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer

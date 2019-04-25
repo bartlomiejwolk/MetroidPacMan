@@ -67,6 +67,8 @@ private:
 
 	void DrawCompanyName();
 
+	void DrawCredits();
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
