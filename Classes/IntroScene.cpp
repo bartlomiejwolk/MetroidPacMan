@@ -284,7 +284,7 @@ void IntroScene::DrawPointsInfo()
 
 void IntroScene::DrawCompanyName()
 {
-	auto label = Label::createWithTTF("metroidsnes", m_FontFilePath, m_FontSize);
+	auto label = Label::createWithTTF("METROIDSNES", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
 	{
 		problemLoading(m_FontFilePath.c_str());
