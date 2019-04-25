@@ -69,6 +69,8 @@ private:
 
 	void DrawCredits();
 
+	void RunPacManAnimation();
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__

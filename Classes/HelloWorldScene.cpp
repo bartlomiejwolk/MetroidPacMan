@@ -96,21 +96,30 @@ bool HelloWorld::init()
 	DrawCompanyName();
 	DrawCredits();
 
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-    if (sprite == nullptr)
-    {
-        problemLoading("'HelloWorld.png'");
-    }
-    else
-    {
-        // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(m_OpenGLVisibleSize.width/2 + m_OpenGLOrigin.x, m_OpenGLVisibleSize.height/2 + m_OpenGLOrigin.y));
+	RunPacManAnimation();
 
-        // add the sprite as a child to this layer
-        this->addChild(sprite, 0);
-    }
     return true;
+}
+
+void HelloWorld::RunPacManAnimation()
+{
+	// add "HelloWorld" splash screen"
+	auto sprite = Sprite::create("HelloWorld.png");
+	if (sprite == nullptr)
+	{
+		problemLoading("'HelloWorld.png'");
+	}
+	else
+	{
+		// position the sprite on the center of the screen
+		sprite->setPosition(Vec2(m_OpenGLVisibleSize.width / 2 + m_OpenGLOrigin.x, m_OpenGLVisibleSize.height / 2 + m_OpenGLOrigin.y));
+
+		// add the sprite as a child to this layer
+		this->addChild(sprite, 0);
+	}
+
+	auto action = MoveBy::create(3, Vec2(-m_OpenGLVisibleSize.width * 0.25, 0));
+	sprite->runAction(action);
 }
 
 void HelloWorld::Draw1UPLabel()
