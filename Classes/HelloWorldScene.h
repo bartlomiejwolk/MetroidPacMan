@@ -51,6 +51,8 @@ private:
 
 	void Draw1UPLabel();
 
+	void Draw2UPLabel();
+
 };
 
 #endif // __HELLOWORLD_SCENE_H__
