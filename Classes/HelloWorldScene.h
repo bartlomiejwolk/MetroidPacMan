@@ -49,6 +49,12 @@ private:
 	// Initialized in `init()`.
 	cocos2d::Vec2 m_OpenGLOrigin;
 
+	// Font used for all text in the game.
+	const std::string m_FontFilePath = "fonts/GameCube.ttf";
+
+	// Font size used for almost all text in the game.
+	const int m_FontSize = 70;
+
 	void Draw1UPLabel();
 
 	void Draw2UPLabel();

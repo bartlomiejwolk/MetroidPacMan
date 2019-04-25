@@ -27,6 +27,7 @@
 
 USING_NS_CC;
 
+
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -112,10 +113,10 @@ bool HelloWorld::init()
 void HelloWorld::Draw1UPLabel()
 {
 	// TODO create const for font filepath
-	auto label = Label::createWithTTF("1UP", "fonts/GameCube.ttf", 70);
+	auto label = Label::createWithTTF("1UP", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
 	{
-		problemLoading("'fonts/Marker Felt.ttf'");
+		problemLoading(m_FontFilePath.c_str());
 		return;
 	}
 
@@ -130,10 +131,10 @@ void HelloWorld::Draw1UPLabel()
 
 void HelloWorld::Draw2UPLabel()
 {
-	auto label = Label::createWithTTF("2UP", "fonts/GameCube.ttf", 70);
+	auto label = Label::createWithTTF("2UP", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
 	{
-		problemLoading("'fonts/Marker Felt.ttf'");
+		problemLoading(m_FontFilePath.c_str());
 		return;
 	}
 
@@ -148,10 +149,10 @@ void HelloWorld::Draw2UPLabel()
 
 void HelloWorld::DrawHighScoreLabel()
 {
-	auto label = Label::createWithTTF("HIGH SCORE", "fonts/GameCube.ttf", 70);
+	auto label = Label::createWithTTF("HIGH SCORE", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
 	{
-		problemLoading("'fonts/Marker Felt.ttf'");
+		problemLoading(m_FontFilePath.c_str());
 		return;
 	}
 
@@ -172,10 +173,10 @@ void HelloWorld::DrawCharacterNicknames()
 	float y = 0;
 
 	// draw "CHARACTER / NICKNAME"
-	label = Label::createWithTTF("CHARACTER / NICKNAME", "fonts/GameCube.ttf", 70);
+	label = Label::createWithTTF("CHARACTER / NICKNAME", m_FontFilePath, m_FontSize);
 	if (label == nullptr)
 	{
-		problemLoading("'fonts/Marker Felt.ttf'");
+		problemLoading(m_FontFilePath.c_str());
 		return;
 	}
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
@@ -184,11 +185,11 @@ void HelloWorld::DrawCharacterNicknames()
 	this->addChild(label, 1);
 
 	// draw OIKAKE----"AKABEI"
-	label = Label::createWithTTF("OIKAKE----\"AKABEI\"", "fonts/GameCube.ttf", 70);
+	label = Label::createWithTTF("OIKAKE----\"AKABEI\"", m_FontFilePath, m_FontSize);
 	label->setAnchorPoint(Vec2(0, 0));
 	if (label == nullptr)
 	{
-		problemLoading("'fonts/Marker Felt.ttf'");
+		problemLoading(m_FontFilePath.c_str());
 		return;
 	}
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.3;
@@ -197,11 +198,11 @@ void HelloWorld::DrawCharacterNicknames()
 	this->addChild(label, 1);
 
 	// draw MACHIBUSE----"PINKY"
-	label = Label::createWithTTF("MACHIBUSE--\"PINKY\"", "fonts/GameCube.ttf", 70);
+	label = Label::createWithTTF("MACHIBUSE--\"PINKY\"", m_FontFilePath, m_FontSize);
 	label->setAnchorPoint(Vec2(0, 0));
 	if (label == nullptr)
 	{
-		problemLoading("'fonts/Marker Felt.ttf'");
+		problemLoading(m_FontFilePath.c_str());
 		return;
 	}
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.3;
@@ -210,11 +211,11 @@ void HelloWorld::DrawCharacterNicknames()
 	this->addChild(label, 1);
 
 	// draw KIMAGURE----"AOSUKE"
-	label = Label::createWithTTF("KIMAGURE--\"AOSUKE\"", "fonts/GameCube.ttf", 70);
+	label = Label::createWithTTF("KIMAGURE--\"AOSUKE\"", m_FontFilePath, m_FontSize);
 	label->setAnchorPoint(Vec2(0, 0));
 	if (label == nullptr)
 	{
-		problemLoading("'fonts/Marker Felt.ttf'");
+		problemLoading(m_FontFilePath.c_str());
 		return;
 	}
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.3;
@@ -223,11 +224,11 @@ void HelloWorld::DrawCharacterNicknames()
 	this->addChild(label, 1);
 
 	// draw OTOBOKE----"GUZUTA"
-	label = Label::createWithTTF("OTOBOKE---\"GUZUTA\"", "fonts/GameCube.ttf", 70);
+	label = Label::createWithTTF("OTOBOKE---\"GUZUTA\"", m_FontFilePath, m_FontSize);
 	label->setAnchorPoint(Vec2(0, 0));
 	if (label == nullptr)
 	{
-		problemLoading("'fonts/Marker Felt.ttf'");
+		problemLoading(m_FontFilePath.c_str());
 		return;
 	}
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.3;
