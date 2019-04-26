@@ -167,6 +167,22 @@ void IntroScene::RunPacManAnimation()
 		auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.5f, 0.45f));
 		pinkySprite->runAction(pinkyAction);
 	}
+
+	// Guzuta
+	{
+		auto pinkySprite = Sprite::create("Guzuta.png");
+		if (pinkySprite == nullptr)
+		{
+			problemLoading("'Guzuta.png'");
+			return;
+		}
+		// position the sprite on the center of the screen
+		pinkySprite->setPosition(Utils::GetScreenPoint(1.35f, 0.45f));
+		// add the sprite as a child to this layer
+		this->addChild(pinkySprite, 0);
+		auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.55f, 0.45f));
+		pinkySprite->runAction(pinkyAction);
+	}
 }
 
 void IntroScene::Draw1UPLabel()
