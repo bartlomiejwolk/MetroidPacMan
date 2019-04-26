@@ -132,8 +132,10 @@ void IntroScene::RunPacManAnimation()
 		pinkySprite->setPosition(Utils::GetScreenPoint(0.35f, 0.45f));
 		// add the sprite as a child to this layer
 		this->addChild(pinkySprite, 0);
-		//auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.55f, 0.45f));
-		//pinkySprite->runAction(pinkyAction);
+		auto pinkyAction = Place::create(Utils::GetScreenPoint(999, 999));
+		DelayTime *delay = DelayTime::create(4);
+		auto sequence = Sequence::create(delay, pinkyAction, NULL);
+		pinkySprite->runAction(sequence);
 	}
 
 	// Pinky
