@@ -103,11 +103,10 @@ bool IntroScene::init()
 
 void IntroScene::RunPacManAnimation()
 {
-	// add "HelloWorld" splash screen"
-	auto sprite = Sprite::create("HelloWorld.png");
+	auto sprite = Sprite::create("PacMan.png");
 	if (sprite == nullptr)
 	{
-		problemLoading("'HelloWorld.png'");
+		problemLoading("'PacMan.png'");
 	}
 	else
 	{
