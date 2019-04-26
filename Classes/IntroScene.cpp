@@ -116,8 +116,11 @@ void IntroScene::RunPacManAnimation()
 		sprite->setPosition(Utils::GetScreenPoint(1.1f, 0.45f));
 		// add the sprite as a child to this layer
 		this->addChild(sprite, 0);
-		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.35f, 0.45f));
-		sprite->runAction(action);
+		auto moveToPowerUpAction = MoveTo::create(4, Utils::GetScreenPoint(0.35f, 0.45f));
+		auto chaseGhostsAction = MoveTo::create(4, Utils::GetScreenPoint(1.1f, 0.45f));
+		auto rotate180Action = RotateBy::create(0, 180);
+		auto sequence = Sequence::create(moveToPowerUpAction, rotate180Action, chaseGhostsAction, NULL);
+		sprite->runAction(sequence);
 	}
 
 	// PowerUp
@@ -150,8 +153,10 @@ void IntroScene::RunPacManAnimation()
 		sprite->setPosition(Utils::GetScreenPoint(1.2f, 0.45f));
 		// add the sprite as a child to this layer
 		this->addChild(sprite, 0);
-		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.4f, 0.45f));
-		sprite->runAction(action);
+		auto chasePacManAction = MoveTo::create(4, Utils::GetScreenPoint(0.4f, 0.45f));
+		auto escapeAction = MoveTo::create(7, Utils::GetScreenPoint(1.2f, 0.45f));
+		auto sequence = Sequence::create(chasePacManAction, escapeAction, NULL);
+		sprite->runAction(sequence);
 	}
 
 	// Akabei
@@ -166,8 +171,10 @@ void IntroScene::RunPacManAnimation()
 		sprite->setPosition(Utils::GetScreenPoint(1.25f, 0.45f));
 		// add the sprite as a child to this layer
 		this->addChild(sprite, 0);
-		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.45f, 0.45f));
-		sprite->runAction(action);
+		auto chasePacManAction = MoveTo::create(4, Utils::GetScreenPoint(0.45f, 0.45f));
+		auto escapeAction = MoveTo::create(7, Utils::GetScreenPoint(1.25f, 0.45f));
+		auto sequence = Sequence::create(chasePacManAction, escapeAction, NULL);
+		sprite->runAction(sequence);
 	}
 
 	// Aosuke
@@ -182,8 +189,10 @@ void IntroScene::RunPacManAnimation()
 		sprite->setPosition(Utils::GetScreenPoint(1.3f, 0.45f));
 		// add the sprite as a child to this layer
 		this->addChild(sprite, 0);
-		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.5f, 0.45f));
-		sprite->runAction(action);
+		auto chasePacManAction = MoveTo::create(4, Utils::GetScreenPoint(0.5f, 0.45f));
+		auto escapeAction = MoveTo::create(7, Utils::GetScreenPoint(1.3f, 0.45f));
+		auto sequence = Sequence::create(chasePacManAction, escapeAction, NULL);
+		sprite->runAction(sequence);
 	}
 
 	// Guzuta
@@ -198,8 +207,10 @@ void IntroScene::RunPacManAnimation()
 		sprite->setPosition(Utils::GetScreenPoint(1.35f, 0.45f));
 		// add the sprite as a child to this layer
 		this->addChild(sprite, 0);
-		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.55f, 0.45f));
-		sprite->runAction(action);
+		auto chasePacManAction = MoveTo::create(4, Utils::GetScreenPoint(0.55f, 0.45f));
+		auto escapeAction = MoveTo::create(7, Utils::GetScreenPoint(1.35f, 0.45f));
+		auto sequence = Sequence::create(chasePacManAction, escapeAction, NULL);
+		sprite->runAction(sequence);
 	}
 
 }
