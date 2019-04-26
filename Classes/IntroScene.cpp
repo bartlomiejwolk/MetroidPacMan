@@ -106,100 +106,100 @@ void IntroScene::RunPacManAnimation()
 {
 	// PacMan
 	{
-		auto pacManSprite = Sprite::create("PacMan.png");
-		if (pacManSprite == nullptr)
+		auto sprite = Sprite::create("PacMan.png");
+		if (sprite == nullptr)
 		{
 			problemLoading("'PacMan.png'");
 			return;
 		}
 		// position the sprite on the center of the screen
-		pacManSprite->setPosition(Utils::GetScreenPoint(1.1f, 0.45f));
+		sprite->setPosition(Utils::GetScreenPoint(1.1f, 0.45f));
 		// add the sprite as a child to this layer
-		this->addChild(pacManSprite, 0);
-		auto pacManAction = MoveTo::create(4, Utils::GetScreenPoint(0.35f, 0.45f));
-		pacManSprite->runAction(pacManAction);
+		this->addChild(sprite, 0);
+		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.35f, 0.45f));
+		sprite->runAction(action);
 	}
 
 	// PowerUp
 	{
-		auto pinkySprite = Sprite::create("PowerUp.png");
-		if (pinkySprite == nullptr)
+		auto sprite = Sprite::create("PowerUp.png");
+		if (sprite == nullptr)
 		{
 			problemLoading("'PowerUp.png'");
 			return;
 		}
 		// position the sprite on the center of the screen
-		pinkySprite->setPosition(Utils::GetScreenPoint(0.35f, 0.45f));
+		sprite->setPosition(Utils::GetScreenPoint(0.35f, 0.45f));
 		// add the sprite as a child to this layer
-		this->addChild(pinkySprite, 0);
-		auto pinkyAction = Place::create(Utils::GetScreenPoint(999, 999));
+		this->addChild(sprite, 0);
+		auto action = Place::create(Utils::GetScreenPoint(999, 999));
 		DelayTime *delay = DelayTime::create(4);
-		auto sequence = Sequence::create(delay, pinkyAction, NULL);
-		pinkySprite->runAction(sequence);
+		auto sequence = Sequence::create(delay, action, NULL);
+		sprite->runAction(sequence);
 	}
 
 	// Pinky
 	{
-		auto pinkySprite = Sprite::create("Pinky.png");
-		if (pinkySprite == nullptr)
+		auto sprite = Sprite::create("Pinky.png");
+		if (sprite == nullptr)
 		{
 			problemLoading("'Pinky.png'");
 			return;
 		}
 		// position the sprite on the center of the screen
-		pinkySprite->setPosition(Utils::GetScreenPoint(1.2f, 0.45f));
+		sprite->setPosition(Utils::GetScreenPoint(1.2f, 0.45f));
 		// add the sprite as a child to this layer
-		this->addChild(pinkySprite, 0);
-		auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.4f, 0.45f));
-		pinkySprite->runAction(pinkyAction);
+		this->addChild(sprite, 0);
+		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.4f, 0.45f));
+		sprite->runAction(action);
 	}
 
 	// Akabei
 	{
-		auto pinkySprite = Sprite::create("Akabei.png");
-		if (pinkySprite == nullptr)
+		auto sprite = Sprite::create("Akabei.png");
+		if (sprite == nullptr)
 		{
 			problemLoading("'Akabei.png'");
 			return;
 		}
 		// position the sprite on the center of the screen
-		pinkySprite->setPosition(Utils::GetScreenPoint(1.25f, 0.45f));
+		sprite->setPosition(Utils::GetScreenPoint(1.25f, 0.45f));
 		// add the sprite as a child to this layer
-		this->addChild(pinkySprite, 0);
-		auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.45f, 0.45f));
-		pinkySprite->runAction(pinkyAction);
+		this->addChild(sprite, 0);
+		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.45f, 0.45f));
+		sprite->runAction(action);
 	}
 
 	// Aosuke
 	{
-		auto pinkySprite = Sprite::create("Aosuke.png");
-		if (pinkySprite == nullptr)
+		auto sprite = Sprite::create("Aosuke.png");
+		if (sprite == nullptr)
 		{
 			problemLoading("'Aosuke.png'");
 			return;
 		}
 		// position the sprite on the center of the screen
-		pinkySprite->setPosition(Utils::GetScreenPoint(1.3f, 0.45f));
+		sprite->setPosition(Utils::GetScreenPoint(1.3f, 0.45f));
 		// add the sprite as a child to this layer
-		this->addChild(pinkySprite, 0);
-		auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.5f, 0.45f));
-		pinkySprite->runAction(pinkyAction);
+		this->addChild(sprite, 0);
+		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.5f, 0.45f));
+		sprite->runAction(action);
 	}
 
 	// Guzuta
 	{
-		auto pinkySprite = Sprite::create("Guzuta.png");
-		if (pinkySprite == nullptr)
+		auto sprite = Sprite::create("Guzuta.png");
+		if (sprite == nullptr)
 		{
 			problemLoading("'Guzuta.png'");
 			return;
 		}
 		// position the sprite on the center of the screen
-		pinkySprite->setPosition(Utils::GetScreenPoint(1.35f, 0.45f));
+		sprite->setPosition(Utils::GetScreenPoint(1.35f, 0.45f));
 		// add the sprite as a child to this layer
-		this->addChild(pinkySprite, 0);
-		auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.55f, 0.45f));
-		pinkySprite->runAction(pinkyAction);
+		this->addChild(sprite, 0);
+		auto action = MoveTo::create(4, Utils::GetScreenPoint(0.55f, 0.45f));
+		sprite->runAction(action);
 	}
 
 }
