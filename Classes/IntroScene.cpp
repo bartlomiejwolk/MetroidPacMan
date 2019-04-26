@@ -24,6 +24,7 @@
 
 #include "IntroScene.h"
 #include "SimpleAudioEngine.h"
+#include "Utils.h"
 
 USING_NS_CC;
 
@@ -117,7 +118,7 @@ void IntroScene::RunPacManAnimation()
 		this->addChild(sprite, 0);
 	}
 
-	auto action = MoveBy::create(3, Vec2(-m_OpenGLVisibleSize.width * 0.25, 0));
+	auto action = MoveBy::create(3, Utils::GetScreenPoint(-0.25, 0));
 	sprite->runAction(action);
 }
 
