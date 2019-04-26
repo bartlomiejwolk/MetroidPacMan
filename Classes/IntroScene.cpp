@@ -151,6 +151,22 @@ void IntroScene::RunPacManAnimation()
 		auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.45f, 0.45f));
 		pinkySprite->runAction(pinkyAction);
 	}
+
+	// Aosuke
+	{
+		auto pinkySprite = Sprite::create("Aosuke.png");
+		if (pinkySprite == nullptr)
+		{
+			problemLoading("'Aosuke.png'");
+			return;
+		}
+		// position the sprite on the center of the screen
+		pinkySprite->setPosition(Utils::GetScreenPoint(1.3f, 0.45f));
+		// add the sprite as a child to this layer
+		this->addChild(pinkySprite, 0);
+		auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.5f, 0.45f));
+		pinkySprite->runAction(pinkyAction);
+	}
 }
 
 void IntroScene::Draw1UPLabel()
