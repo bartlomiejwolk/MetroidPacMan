@@ -104,22 +104,37 @@ bool IntroScene::init()
 
 void IntroScene::RunPacManAnimation()
 {
-	auto sprite = Sprite::create("PacMan.png");
-	if (sprite == nullptr)
+	// PacMan
 	{
-		problemLoading("'PacMan.png'");
-	}
-	else
-	{
+		auto pacManSprite = Sprite::create("PacMan.png");
+		if (pacManSprite == nullptr)
+		{
+			problemLoading("'PacMan.png'");
+			return;
+		}
 		// position the sprite on the center of the screen
-		sprite->setPosition(Vec2(m_OpenGLVisibleSize.width / 2 + m_OpenGLOrigin.x, m_OpenGLVisibleSize.height / 2 + m_OpenGLOrigin.y));
-
+		pacManSprite->setPosition(Utils::GetScreenPoint(1.1f, 0.45f));
 		// add the sprite as a child to this layer
-		this->addChild(sprite, 0);
+		this->addChild(pacManSprite, 0);
+		auto pacManAction = MoveTo::create(4, Utils::GetScreenPoint(0.35f, 0.45f));
+		pacManSprite->runAction(pacManAction);
 	}
 
-	auto action = MoveBy::create(3, Utils::GetScreenPoint(-0.25, 0));
-	sprite->runAction(action);
+	// Pinky
+	{
+		auto pinkySprite = Sprite::create("Pinky.png");
+		if (pinkySprite == nullptr)
+		{
+			problemLoading("'Pinky.png'");
+			return;
+		}
+		// position the sprite on the center of the screen
+		pinkySprite->setPosition(Utils::GetScreenPoint(1.2f, 0.45f));
+		// add the sprite as a child to this layer
+		this->addChild(pinkySprite, 0);
+		auto pinkyAction = MoveTo::create(4, Utils::GetScreenPoint(0.4f, 0.45f));
+		pinkySprite->runAction(pinkyAction);
+	}
 }
 
 void IntroScene::Draw1UPLabel()
