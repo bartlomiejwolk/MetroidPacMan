@@ -71,13 +71,6 @@ void PacManApplication::initGLContextAttrs()
     GLView::setGLContextAttrs(glContextAttrs);
 }
 
-// if you want to use the package manager to install more packages,  
-// don't modify or remove this function
-static int register_all_packages()
-{
-    return 0; //flag for packages manager
-}
-
 bool PacManApplication::applicationDidFinishLaunching() {
     // initialize director
     auto director = Director::getInstance();
@@ -153,4 +146,11 @@ void PacManApplication::applicationWillEnterForeground() {
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
     SimpleAudioEngine::getInstance()->resumeAllEffects();
 #endif
+}
+
+// if you want to use the package manager to install more packages,  
+// don't modify or remove this function
+static int register_all_packages()
+{
+	return 0; //flag for packages manager
 }
