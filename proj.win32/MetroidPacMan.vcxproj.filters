@@ -21,6 +21,9 @@
     <ClCompile Include="..\Classes\IntroScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\MainMenuScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -33,6 +36,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainMenuScene.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
