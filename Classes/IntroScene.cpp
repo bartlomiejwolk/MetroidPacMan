@@ -392,7 +392,7 @@ void IntroScene::menuCloseCallback(Ref* pSender)
 {
 	auto mainMenuScene = MainMenuScene::createScene();
     //Close the cocos2d-x game scene and quit the application
-	Director::getInstance()->pushScene(mainMenuScene);
+	Director::getInstance()->replaceScene(mainMenuScene);
 
     /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() as given above,instead trigger a custom event created in RootViewController.mm as below*/
 
