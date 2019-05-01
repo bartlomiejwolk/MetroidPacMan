@@ -72,8 +72,24 @@ bool IntroScene::init()
 	DrawPointsInfo();
 	DrawCompanyName();
 	DrawCredits();
-
 	RunPacManAnimation();
+
+	auto eventListener = EventListenerKeyboard::create();
+	eventListener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
+	{
+		switch (keyCode)
+		{
+			case EventKeyboard::KeyCode::KEY_SPACE:
+			case EventKeyboard::KeyCode::KEY_ENTER:
+			{
+				auto mainMenuScene = MainMenuScene::createScene();
+				Director::getInstance()->replaceScene(mainMenuScene);
+				break;
+			}
+		}
+	};
+	// must be called after event handlers have been assigned
+	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
 
     return true;
 }
@@ -390,9 +406,7 @@ void IntroScene::DrawCredits()
 
 void IntroScene::menuCloseCallback(Ref* pSender)
 {
-	auto mainMenuScene = MainMenuScene::createScene();
     //Close the cocos2d-x game scene and quit the application
-	Director::getInstance()->replaceScene(mainMenuScene);
 
     /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() as given above,instead trigger a custom event created in RootViewController.mm as below*/
 
