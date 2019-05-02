@@ -30,6 +30,9 @@ private:
 
 	// Font size used for all text in the game.
 	const int m_FontSize = 70;
+	
+	// Called in `init()`.
+	void SubscribeToInputEvents();
 
 	void Draw1UPLabel();
 
