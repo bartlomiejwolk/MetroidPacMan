@@ -1,6 +1,7 @@
 #include "GameplayScene.h"
 #include "SimpleAudioEngine.h"
 #include "Utils.h"
+#include "IntroScene.h"
 
 USING_NS_CC;
 
@@ -27,9 +28,11 @@ bool GameplayScene::init()
     m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
     m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
 
+	SubscribeToInputEvents();
+
 	// draw scene name label
 	{
-		auto label = Label::createWithTTF("Gameplay Scene", m_FontFilePath, m_FontSize);
+		auto label = Label::createWithTTF("GAMEPLAY SCENE", m_FontFilePath, m_FontSize);
 		if (label == nullptr)
 		{
 			problemLoading(m_FontFilePath.c_str());
@@ -43,6 +46,25 @@ bool GameplayScene::init()
 	}
 
     return true;
+}
+
+void GameplayScene::SubscribeToInputEvents()
+{
+	auto eventListener = EventListenerKeyboard::create();
+	eventListener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
+	{
+		switch (keyCode)
+		{
+		case EventKeyboard::KeyCode::KEY_ESCAPE:
+		{
+			auto introScene = IntroScene::createScene();
+			Director::getInstance()->replaceScene(introScene);
+			break;
+		}
+		}
+	};
+	// must be called after event handlers have been assigned
+	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
 }
 
 void GameplayScene::menuCloseCallback(Ref* pSender)

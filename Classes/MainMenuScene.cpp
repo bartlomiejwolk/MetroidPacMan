@@ -32,7 +32,7 @@ bool MainMenuScene::init()
 
 	// draw scene name label
 	{
-		auto label = Label::createWithTTF("GAMEPLAY SCENE", m_FontFilePath, m_FontSize);
+		auto label = Label::createWithTTF("MAIN MENU SCENE", m_FontFilePath, m_FontSize);
 		if (label == nullptr)
 		{
 			problemLoading(m_FontFilePath.c_str());

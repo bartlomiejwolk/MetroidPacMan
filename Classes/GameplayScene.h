@@ -33,6 +33,8 @@ private:
 	// Font size used for all text in the game.
 	const int m_FontSize = 70;
 
+	void SubscribeToInputEvents();
+
 };
 
 #endif // __GAMEPLAY_SCENE_H__
