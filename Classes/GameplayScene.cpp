@@ -27,6 +27,21 @@ bool GameplayScene::init()
     m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
     m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
 
+	// draw scene name label
+	{
+		auto label = Label::createWithTTF("Gameplay Scene", m_FontFilePath, m_FontSize);
+		if (label == nullptr)
+		{
+			problemLoading(m_FontFilePath.c_str());
+		}
+		else
+		{
+			label->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
+			// add the label as a child to this layer
+			this->addChild(label, 1);
+		}
+	}
+
     return true;
 }
 

@@ -17,17 +17,21 @@ public:
     CREATE_FUNC(IntroScene);
 
 private:
+	// TODO move to a custom base class
 	// Visible size of the OpenGL view in points.
 	// Initialized in `init()`.
 	cocos2d::Size m_OpenGLVisibleSize;
 
+	// TODO move to a custom base class
 	// Visible origin coordinate of the OpenGL view in points.
 	// Initialized in `init()`.
 	cocos2d::Vec2 m_OpenGLOrigin;
 
+	// TODO move to a custom base class
 	// Font used for all text in the game.
 	const std::string m_FontFilePath = "fonts/GameCube.ttf";
 
+	// TODO move to a custom base class
 	// Font size used for all text in the game.
 	const int m_FontSize = 70;
 	

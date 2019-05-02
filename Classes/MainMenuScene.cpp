@@ -1,6 +1,7 @@
 #include "MainMenuScene.h"
 #include "SimpleAudioEngine.h"
 #include "Utils.h"
+#include "GameplayScene.h"
 
 USING_NS_CC;
 
@@ -17,11 +18,8 @@ static void problemLoading(const char* filename)
     printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
 }
 
-// on "init" you need to initialize your instance
 bool MainMenuScene::init()
 {
-    //////////////////////////////
-    // 1. super init first
     if ( !Scene::init() )
     {
         return false;
@@ -30,7 +28,44 @@ bool MainMenuScene::init()
     m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
     m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
 
+	SubscribeToInputEvents();
+
+	// draw scene name label
+	{
+		auto label = Label::createWithTTF("GAMEPLAY SCENE", m_FontFilePath, m_FontSize);
+		if (label == nullptr)
+		{
+			problemLoading(m_FontFilePath.c_str());
+		}
+		else
+		{
+			label->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
+			// add the label as a child to this layer
+			this->addChild(label, 1);
+		}
+	}
+
     return true;
+}
+
+void MainMenuScene::SubscribeToInputEvents()
+{
+	auto eventListener = EventListenerKeyboard::create();
+	eventListener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
+	{
+		switch (keyCode)
+		{
+		case EventKeyboard::KeyCode::KEY_SPACE:
+		case EventKeyboard::KeyCode::KEY_ENTER:
+		{
+			auto gameplayScene = GameplayScene::createScene();
+			Director::getInstance()->replaceScene(gameplayScene);
+			break;
+		}
+		}
+	};
+	// must be called after event handlers have been assigned
+	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
 }
 
 void MainMenuScene::menuCloseCallback(Ref* pSender)

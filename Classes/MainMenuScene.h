@@ -10,7 +10,7 @@ public:
 
     virtual bool init();
 
-    // a selector callback
+	// a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     
     // implement the "static create()" method manually
@@ -32,6 +32,8 @@ private:
 
 	// Font size used for all text in the game.
 	const int m_FontSize = 70;
+
+	void SubscribeToInputEvents();
 
 };
 
