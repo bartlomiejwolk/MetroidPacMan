@@ -2,8 +2,9 @@
 #define __INTRO_SCENE_H__
 
 #include "cocos2d.h"
+#include "PacManScene.h"
 
-class IntroScene : public cocos2d::Scene
+class IntroScene : public PacManScene
 {
 public:
     static cocos2d::Scene* createScene();
@@ -17,40 +18,15 @@ public:
     CREATE_FUNC(IntroScene);
 
 private:
-	// TODO move to a custom base class
-	// Visible size of the OpenGL view in points.
-	// Initialized in `init()`.
-	cocos2d::Size m_OpenGLVisibleSize;
-
-	// TODO move to a custom base class
-	// Visible origin coordinate of the OpenGL view in points.
-	// Initialized in `init()`.
-	cocos2d::Vec2 m_OpenGLOrigin;
-
-	// TODO move to a custom base class
-	// Font used for all text in the game.
-	const std::string m_FontFilePath = "fonts/GameCube.ttf";
-
-	// TODO move to a custom base class
-	// Font size used for all text in the game.
-	const int m_FontSize = 70;
 	
 	// Called in `init()`.
 	void SubscribeToInputEvents();
-
-	void Draw1UPLabel();
-
-	void Draw2UPLabel();
-
-	void DrawHighScoreLabel();
 
 	void DrawCharacterNicknames();
 
 	void DrawPointsInfo();
 
 	void DrawCompanyName();
-
-	void DrawCredits();
 
 	void RunPacManAnimation();
 

@@ -2,8 +2,9 @@
 #define __MAIN_MENU_SCENE_H__
 
 #include "cocos2d.h"
+#include "PacManScene.h"
 
-class MainMenuScene : public cocos2d::Scene
+class MainMenuScene : public PacManScene
 {
 public:
     static cocos2d::Scene* createScene();

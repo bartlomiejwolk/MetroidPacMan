@@ -2,8 +2,9 @@
 #define __GAMEPLAY_SCENE_H__
 
 #include "cocos2d.h"
+#include "PacManScene.h"
 
-class GameplayScene : public cocos2d::Scene
+class GameplayScene : public PacManScene
 {
 public:
     static cocos2d::Scene* createScene();

@@ -10,39 +10,28 @@ Scene* MainMenuScene::createScene()
     return MainMenuScene::create();
 }
 
-// TODO move to Utils namespace
-// Print useful error message instead of segfaulting when files are not there.
-static void problemLoading(const char* filename)
-{
-    printf("Error while loading: %s\n", filename);
-    printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
-}
-
 bool MainMenuScene::init()
 {
-    if ( !Scene::init() )
+    if ( !PacManScene::init() )
     {
         return false;
     }
 
-    m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
-    m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
+	Draw1UPLabel();
+	Draw2UPLabel();
+	DrawHighScoreLabel();
+	DrawCredits();
 
 	SubscribeToInputEvents();
 
 	// draw scene name label
 	{
 		auto label = Label::createWithTTF("MAIN MENU SCENE", m_FontFilePath, m_FontSize);
-		if (label == nullptr)
-		{
-			problemLoading(m_FontFilePath.c_str());
-		}
-		else
-		{
-			label->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
-			// add the label as a child to this layer
-			this->addChild(label, 1);
-		}
+		assert(label && "Error while loading resource!");
+
+		label->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
+		// add the label as a child to this layer
+		this->addChild(label, 1);
 	}
 
     return true;

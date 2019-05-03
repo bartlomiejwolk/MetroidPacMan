@@ -10,22 +10,12 @@ Scene* IntroScene::createScene()
     return IntroScene::create();
 }
 
-// Print useful error message instead of segfaulting when files are not there.
-static void problemLoading(const char* filename)
-{
-    printf("Error while loading: %s\n", filename);
-    printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
-}
-
 bool IntroScene::init()
 {
-    if ( !Scene::init() )
+    if (!PacManScene::init())
     {
         return false;
     }
-
-    m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
-    m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
 
 	Draw1UPLabel();
 	Draw2UPLabel();
@@ -67,11 +57,12 @@ void IntroScene::RunPacManAnimation()
 	// PacMan
 	{
 		auto sprite = Sprite::create("PacMan.png");
-		if (sprite == nullptr)
+		// TODO replace with assert macro
+		/*if (sprite == nullptr)
 		{
-			problemLoading("'PacMan.png'");
+			Utils::ProblemLoading("PacMan.png");
 			return;
-		}
+		}*/
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.1f, 0.45f));
 		// add the sprite as a child to this layer
@@ -86,11 +77,11 @@ void IntroScene::RunPacManAnimation()
 	// PowerUp
 	{
 		auto sprite = Sprite::create("PowerUp.png");
-		if (sprite == nullptr)
+		/*if (sprite == nullptr)
 		{
 			problemLoading("'PowerUp.png'");
 			return;
-		}
+		}*/
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(0.35f, 0.45f));
 		// add the sprite as a child to this layer
@@ -104,11 +95,11 @@ void IntroScene::RunPacManAnimation()
 	// Pinky
 	{
 		auto sprite = Sprite::create("Pinky.png");
-		if (sprite == nullptr)
+		/*if (sprite == nullptr)
 		{
 			problemLoading("'Pinky.png'");
 			return;
-		}
+		}*/
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.2f, 0.45f));
 		// add the sprite as a child to this layer
@@ -122,11 +113,11 @@ void IntroScene::RunPacManAnimation()
 	// Akabei
 	{
 		auto sprite = Sprite::create("Akabei.png");
-		if (sprite == nullptr)
+		/*if (sprite == nullptr)
 		{
 			problemLoading("'Akabei.png'");
 			return;
-		}
+		}*/
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.25f, 0.45f));
 		// add the sprite as a child to this layer
@@ -140,11 +131,11 @@ void IntroScene::RunPacManAnimation()
 	// Aosuke
 	{
 		auto sprite = Sprite::create("Aosuke.png");
-		if (sprite == nullptr)
+		/*if (sprite == nullptr)
 		{
 			problemLoading("'Aosuke.png'");
 			return;
-		}
+		}*/
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.3f, 0.45f));
 		// add the sprite as a child to this layer
@@ -158,11 +149,11 @@ void IntroScene::RunPacManAnimation()
 	// Guzuta
 	{
 		auto sprite = Sprite::create("Guzuta.png");
-		if (sprite == nullptr)
+		/*if (sprite == nullptr)
 		{
 			problemLoading("'Guzuta.png'");
 			return;
-		}
+		}*/
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.35f, 0.45f));
 		// add the sprite as a child to this layer
@@ -175,62 +166,6 @@ void IntroScene::RunPacManAnimation()
 
 }
 
-void IntroScene::Draw1UPLabel()
-{
-	auto label = Label::createWithTTF("1UP", m_FontFilePath, m_FontSize);
-	if (label == nullptr)
-	{
-		problemLoading(m_FontFilePath.c_str());
-		return;
-	}
-
-	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 4;
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
-	label->setAnchorPoint(Vec2(0, 0));
-	label->setPosition(Vec2(x, y));
-
-	// add the label as a child to this layer
-	this->addChild(label, 1);
-}
-
-void IntroScene::Draw2UPLabel()
-{
-	auto label = Label::createWithTTF("2UP", m_FontFilePath, m_FontSize);
-	if (label == nullptr)
-	{
-		problemLoading(m_FontFilePath.c_str());
-		return;
-	}
-
-	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.75;
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
-	label->setAnchorPoint(Vec2(1, 0));
-	label->setPosition(Vec2(x, y));
-
-	// add the label as a child to this layer
-	this->addChild(label, 1);
-}
-
-void IntroScene::DrawHighScoreLabel()
-{
-	auto label = Label::createWithTTF("HIGH SCORE", m_FontFilePath, m_FontSize);
-	if (label == nullptr)
-	{
-		problemLoading(m_FontFilePath.c_str());
-		return;
-	}
-
-	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
-	label->setPosition(Vec2(x, y));
-
-	// add the label as a child to this layer
-	this->addChild(label, 1);
-}
-
 void IntroScene::DrawCharacterNicknames()
 {
 	Label *label = nullptr;
@@ -240,11 +175,11 @@ void IntroScene::DrawCharacterNicknames()
 
 	// draw "CHARACTER / NICKNAME"
 	label = Label::createWithTTF("CHARACTER / NICKNAME", m_FontFilePath, m_FontSize);
-	if (label == nullptr)
+	/*if (label == nullptr)
 	{
 		problemLoading(m_FontFilePath.c_str());
 		return;
-	}
+	}*/
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
 	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.8;
 	label->setPosition(Vec2(x, y));
@@ -253,11 +188,11 @@ void IntroScene::DrawCharacterNicknames()
 	// draw OIKAKE----"AKABEI"
 	label = Label::createWithTTF("OIKAKE----\"AKABEI\"", m_FontFilePath, m_FontSize);
 	label->setAnchorPoint(Vec2(0, 0));
-	if (label == nullptr)
+	/*if (label == nullptr)
 	{
 		problemLoading(m_FontFilePath.c_str());
 		return;
-	}
+	}*/
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.3;
 	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.7;
 	label->setPosition(Vec2(x, y));
@@ -266,11 +201,11 @@ void IntroScene::DrawCharacterNicknames()
 	// draw MACHIBUSE----"PINKY"
 	label = Label::createWithTTF("MACHIBUSE--\"PINKY\"", m_FontFilePath, m_FontSize);
 	label->setAnchorPoint(Vec2(0, 0));
-	if (label == nullptr)
+	/*if (label == nullptr)
 	{
 		problemLoading(m_FontFilePath.c_str());
 		return;
-	}
+	}*/
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.3;
 	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.65;
 	label->setPosition(Vec2(x, y));
@@ -279,11 +214,11 @@ void IntroScene::DrawCharacterNicknames()
 	// draw KIMAGURE----"AOSUKE"
 	label = Label::createWithTTF("KIMAGURE--\"AOSUKE\"", m_FontFilePath, m_FontSize);
 	label->setAnchorPoint(Vec2(0, 0));
-	if (label == nullptr)
+	/*if (label == nullptr)
 	{
 		problemLoading(m_FontFilePath.c_str());
 		return;
-	}
+	}*/
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.3;
 	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.6;
 	label->setPosition(Vec2(x, y));
@@ -292,11 +227,11 @@ void IntroScene::DrawCharacterNicknames()
 	// draw OTOBOKE----"GUZUTA"
 	label = Label::createWithTTF("OTOBOKE---\"GUZUTA\"", m_FontFilePath, m_FontSize);
 	label->setAnchorPoint(Vec2(0, 0));
-	if (label == nullptr)
+	/*if (label == nullptr)
 	{
 		problemLoading(m_FontFilePath.c_str());
 		return;
-	}
+	}*/
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.3;
 	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.55;
 	label->setPosition(Vec2(x, y));
@@ -312,11 +247,11 @@ void IntroScene::DrawPointsInfo()
 
 	// draw "10 PTS"
 	label = Label::createWithTTF("10 PTS", m_FontFilePath, m_FontSize);
-	if (label == nullptr)
+	/*if (label == nullptr)
 	{
 		problemLoading(m_FontFilePath.c_str());
 		return;
-	}
+	}*/
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
 	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.35;
 	label->setPosition(Vec2(x, y));
@@ -324,11 +259,11 @@ void IntroScene::DrawPointsInfo()
 
 	// draw "20 PTS"
 	label = Label::createWithTTF("20 PTS", m_FontFilePath, m_FontSize);
-	if (label == nullptr)
+	/*if (label == nullptr)
 	{
 		problemLoading(m_FontFilePath.c_str());
 		return;
-	}
+	}*/
 	x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
 	y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.3;
 	label->setPosition(Vec2(x, y));
@@ -338,34 +273,15 @@ void IntroScene::DrawPointsInfo()
 void IntroScene::DrawCompanyName()
 {
 	auto label = Label::createWithTTF("METROIDSNES", m_FontFilePath, m_FontSize);
-	if (label == nullptr)
+	/*if (label == nullptr)
 	{
 		problemLoading(m_FontFilePath.c_str());
 		return;
-	}
+	}*/
 
 	// position the label on the screen
 	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
 	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.15;
-	label->setPosition(Vec2(x, y));
-
-	// add the label as a child to this layer
-	this->addChild(label, 1);
-}
-
-void IntroScene::DrawCredits() 
-{
-	auto label = Label::createWithTTF("CREDIT  0", m_FontFilePath, m_FontSize);
-	if (label == nullptr)
-	{
-		problemLoading(m_FontFilePath.c_str());
-		return;
-	}
-
-	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.25;
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.01;
-	label->setAnchorPoint(Vec2(0, 0));
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
