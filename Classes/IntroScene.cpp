@@ -57,12 +57,8 @@ void IntroScene::RunPacManAnimation()
 	// PacMan
 	{
 		auto sprite = Sprite::create("PacMan.png");
-		// TODO replace with assert macro
-		/*if (sprite == nullptr)
-		{
-			Utils::ProblemLoading("PacMan.png");
-			return;
-		}*/
+		assert(sprite && "Error while loading resource!");
+
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.1f, 0.45f));
 		// add the sprite as a child to this layer
@@ -77,11 +73,8 @@ void IntroScene::RunPacManAnimation()
 	// PowerUp
 	{
 		auto sprite = Sprite::create("PowerUp.png");
-		/*if (sprite == nullptr)
-		{
-			problemLoading("'PowerUp.png'");
-			return;
-		}*/
+		assert(sprite && "Error while loading resource!");
+
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(0.35f, 0.45f));
 		// add the sprite as a child to this layer
@@ -95,11 +88,8 @@ void IntroScene::RunPacManAnimation()
 	// Pinky
 	{
 		auto sprite = Sprite::create("Pinky.png");
-		/*if (sprite == nullptr)
-		{
-			problemLoading("'Pinky.png'");
-			return;
-		}*/
+		assert(sprite && "Error while loading resource!");
+
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.2f, 0.45f));
 		// add the sprite as a child to this layer
@@ -113,11 +103,8 @@ void IntroScene::RunPacManAnimation()
 	// Akabei
 	{
 		auto sprite = Sprite::create("Akabei.png");
-		/*if (sprite == nullptr)
-		{
-			problemLoading("'Akabei.png'");
-			return;
-		}*/
+		assert(sprite && "Error while loading resource!");
+
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.25f, 0.45f));
 		// add the sprite as a child to this layer
@@ -131,11 +118,8 @@ void IntroScene::RunPacManAnimation()
 	// Aosuke
 	{
 		auto sprite = Sprite::create("Aosuke.png");
-		/*if (sprite == nullptr)
-		{
-			problemLoading("'Aosuke.png'");
-			return;
-		}*/
+		assert(sprite && "Error while loading resource!");
+
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.3f, 0.45f));
 		// add the sprite as a child to this layer
@@ -149,11 +133,8 @@ void IntroScene::RunPacManAnimation()
 	// Guzuta
 	{
 		auto sprite = Sprite::create("Guzuta.png");
-		/*if (sprite == nullptr)
-		{
-			problemLoading("'Guzuta.png'");
-			return;
-		}*/
+		assert(sprite && "Error while loading resource!");
+
 		// position the sprite on the center of the screen
 		sprite->setPosition(Utils::GetScreenPoint(1.35f, 0.45f));
 		// add the sprite as a child to this layer
