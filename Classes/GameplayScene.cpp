@@ -39,9 +39,11 @@ bool GameplayScene::init()
 
 		// TODO assert layers are not null
 		auto bgLayer = tilemap->getLayer("Background");
+		auto gameplayLayer = tilemap->getLayer("Gameplay");
 		// TODO assert object group is not null
 		auto objectGroup = tilemap->getObjectGroup("Objects");
   		addChild(tilemap, 0, 99);
+
 
  		auto powerUpObject = objectGroup->getObject("PowerUpTopLeft");
 		auto x = powerUpObject["x"].asInt();
@@ -49,19 +51,32 @@ bool GameplayScene::init()
 		auto width = powerUpObject["width"].asInt();
 		auto height = powerUpObject["height"].asInt();
 		auto rotation = powerUpObject["rotation"].asInt();
-		
+
+		/*auto bgTile = bgLayer->getTileAt(Vec2(1, 3));
+		bgTile->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));*/
+
 		//auto bgTile = bgLayer->getTileAt(Vec2(1, 1));
 		//auto objectTile = objectLayer->getTileAt(Vec2(1, 1));
 
 		// draw PacMan
 		{
-			auto sprite = Sprite::create("PacMan.png");
-			assert(sprite && "Error while loading resource!");
+			//auto sprite = Sprite::create("PacMan.png");
+			//assert(sprite && "Error while loading resource!");
 
 			// position the sprite on the center of the screen
-			sprite->setPosition(x, y);
+			//pacmanSprite->setPosition(x, y);
 			// add the sprite as a child to this layer
-			this->addChild(sprite, 0);
+			//this->addChild(pacmanSprite, 0);
+		}
+
+		// load pacman sprite
+		{
+			auto spriteCache = SpriteFrameCache::getInstance();
+ 			spriteCache->addSpriteFramesWithFile("TexturePacker_spritesheet.plist");
+
+			auto testSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
+			testSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
+			this->addChild(testSprite);
 		}
 	}
 
