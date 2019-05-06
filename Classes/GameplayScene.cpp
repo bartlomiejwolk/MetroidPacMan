@@ -20,8 +20,7 @@ bool GameplayScene::init()
 	Draw1UPLabel();
 	Draw2UPLabel();
 	DrawHighScoreLabel();
-	DrawCredits();
-
+ 
 	SubscribeToInputEvents();
 
 	// draw scene name label
@@ -32,6 +31,38 @@ bool GameplayScene::init()
 		label->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
 		// add the label as a child to this layer
 		this->addChild(label, 1);
+	}
+
+	// load tilemap
+	{
+		auto tilemap = TMXTiledMap::create("TileMap.tmx");
+
+		// TODO assert layers are not null
+		auto bgLayer = tilemap->getLayer("Background");
+		// TODO assert object group is not null
+		auto objectGroup = tilemap->getObjectGroup("Objects");
+  		addChild(tilemap, 0, 99);
+
+ 		auto powerUpObject = objectGroup->getObject("PowerUpTopLeft");
+		auto x = powerUpObject["x"].asInt();
+ 		auto y = powerUpObject["y"].asInt();
+		auto width = powerUpObject["width"].asInt();
+		auto height = powerUpObject["height"].asInt();
+		auto rotation = powerUpObject["rotation"].asInt();
+		
+		//auto bgTile = bgLayer->getTileAt(Vec2(1, 1));
+		//auto objectTile = objectLayer->getTileAt(Vec2(1, 1));
+
+		// draw PacMan
+		{
+			auto sprite = Sprite::create("PacMan.png");
+			assert(sprite && "Error while loading resource!");
+
+			// position the sprite on the center of the screen
+			sprite->setPosition(x, y);
+			// add the sprite as a child to this layer
+			this->addChild(sprite, 0);
+		}
 	}
 
     return true;
@@ -67,4 +98,8 @@ void GameplayScene::menuCloseCallback(Ref* pSender)
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 
 
+}
+
+void GameplayScene::update(float delta)
+{
 }

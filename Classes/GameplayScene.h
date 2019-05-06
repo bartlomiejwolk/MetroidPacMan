@@ -17,6 +17,8 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(GameplayScene);
 
+	virtual void update(float delta) override;
+
 private:
 	// TODO make global
 	// Visible size of the OpenGL view in points.
