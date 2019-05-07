@@ -42,9 +42,14 @@ private:
 
 	void SubscribeToInputEvents();
 
+	// Loads `.tmx` tilemap file.
 	void LoadTileMap();
 
+	// Loads `.plist` file.
 	void LoadPropertyList();
+
+	// Creates PacMan sprite and animates it.
+	void CreatePacManSprite();
 };
 
 #endif // __GAMEPLAY_SCENE_H__

@@ -24,6 +24,7 @@ bool GameplayScene::init()
 	SubscribeToInputEvents();
 	LoadTileMap();
 	LoadPropertyList();
+	CreatePacManSprite();
 
 	// DEBUG draw scene name label
 	{
@@ -48,37 +49,6 @@ bool GameplayScene::init()
 
 		//auto bgTile = bgLayer->getTileAt(Vec2(1, 1));
 		//auto objectTile = objectLayer->getTileAt(Vec2(1, 1));
-
-		// draw PacMan
-		{
-			//auto sprite = Sprite::create("PacMan.png");
-			//assert(sprite && "Error while loading resource!");
-
-			// position the sprite on the center of the screen
-			//pacmanSprite->setPosition(x, y);
-			// add the sprite as a child to this layer
-			//this->addChild(pacmanSprite, 0);
-		}
-
-		// load pacman sprite
-		{
-			auto testSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
-			testSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
-			this->addChild(testSprite);
-
-			// create animation
-			{
-				Vector<SpriteFrame*> frames = Vector<SpriteFrame*>();
-				frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
-				frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_049.png")); // medium
-				frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
-				frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_113.png")); // closed
-
-				auto animation = Animation::createWithSpriteFrames(frames, 0.1f, 1);
-				auto animate = Animate::create(animation);
-				testSprite->runAction(RepeatForever::create(animate));
-			}
-		}
 	}
 
     return true;
@@ -100,6 +70,26 @@ void GameplayScene::LoadPropertyList()
 	m_SpriteFrameCache = SpriteFrameCache::getInstance();
 	// TODO extract const field
 	m_SpriteFrameCache->addSpriteFramesWithFile("TexturePacker_spritesheet.plist");
+}
+
+void GameplayScene::CreatePacManSprite()
+{
+	// create sprite
+	auto testSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
+	testSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
+	this->addChild(testSprite);
+
+	// get sprite frames
+	Vector<SpriteFrame*> frames = Vector<SpriteFrame*>();
+	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
+	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_049.png")); // medium
+	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
+	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_113.png")); // closed
+
+	// create and run animation
+	auto animation = Animation::createWithSpriteFrames(frames, 0.1f, 1);
+	auto animate = Animate::create(animation);
+	testSprite->runAction(RepeatForever::create(animate));
 }
 
 void GameplayScene::SubscribeToInputEvents()
