@@ -77,6 +77,19 @@ bool GameplayScene::init()
 			auto testSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
 			testSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
 			this->addChild(testSprite);
+
+			// create animation
+			{
+				Vector<SpriteFrame*> frames = Vector<SpriteFrame*>();
+				frames.pushBack(spriteCache->getSpriteFrameByName("image_part_051.png")); // small
+				frames.pushBack(spriteCache->getSpriteFrameByName("image_part_049.png")); // medium
+				frames.pushBack(spriteCache->getSpriteFrameByName("image_part_051.png")); // small
+				frames.pushBack(spriteCache->getSpriteFrameByName("image_part_113.png")); // closed
+
+				auto animation = Animation::createWithSpriteFrames(frames, 0.1f, 1);
+				auto animate = Animate::create(animation);
+				testSprite->runAction(RepeatForever::create(animate));
+			}
 		}
 	}
 
