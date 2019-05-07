@@ -36,8 +36,11 @@ private:
 	// Font size used for all text in the game.
 	const int m_FontSize = 70;
 
+	cocos2d::TMXObjectGroup* m_ObjectGroup;
+
 	void SubscribeToInputEvents();
 
+	void LoadTileMap();
 };
 
 #endif // __GAMEPLAY_SCENE_H__

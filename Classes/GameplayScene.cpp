@@ -22,8 +22,9 @@ bool GameplayScene::init()
 	DrawHighScoreLabel();
  
 	SubscribeToInputEvents();
+	LoadTileMap();
 
-	// draw scene name label
+	// DEBUG draw scene name label
 	{
 		auto label = Label::createWithTTF("GAMEPLAY SCENE", m_FontFilePath, m_FontSize);
 		assert(label && "Error while loading resource!");
@@ -33,19 +34,8 @@ bool GameplayScene::init()
 		this->addChild(label, 1);
 	}
 
-	// load tilemap
 	{
-		auto tilemap = TMXTiledMap::create("TileMap.tmx");
-
-		// TODO assert layers are not null
-		auto bgLayer = tilemap->getLayer("Background");
-		auto gameplayLayer = tilemap->getLayer("Gameplay");
-		// TODO assert object group is not null
-		auto objectGroup = tilemap->getObjectGroup("Objects");
-  		addChild(tilemap, 0, 99);
-
-
- 		auto powerUpObject = objectGroup->getObject("PowerUpTopLeft");
+ 		auto powerUpObject = m_ObjectGroup->getObject("PowerUpTopLeft");
 		auto x = powerUpObject["x"].asInt();
  		auto y = powerUpObject["y"].asInt();
 		auto width = powerUpObject["width"].asInt();
@@ -94,6 +84,17 @@ bool GameplayScene::init()
 	}
 
     return true;
+}
+
+void GameplayScene::LoadTileMap() 
+{
+	auto tilemap = TMXTiledMap::create("TileMap.tmx");
+	// TODO assert layers are not null
+	auto bgLayer = tilemap->getLayer("Background");
+	auto gameplayLayer = tilemap->getLayer("Gameplay");
+	// TODO assert object group is not null
+	m_ObjectGroup = tilemap->getObjectGroup("Objects");
+	addChild(tilemap, 0, 99);
 }
 
 void GameplayScene::SubscribeToInputEvents()
