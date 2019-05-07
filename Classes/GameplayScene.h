@@ -38,9 +38,13 @@ private:
 
 	cocos2d::TMXObjectGroup* m_ObjectGroup;
 
+	cocos2d::SpriteFrameCache* m_SpriteFrameCache;
+
 	void SubscribeToInputEvents();
 
 	void LoadTileMap();
+
+	void LoadPropertyList();
 };
 
 #endif // __GAMEPLAY_SCENE_H__

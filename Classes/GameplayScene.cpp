@@ -23,6 +23,7 @@ bool GameplayScene::init()
  
 	SubscribeToInputEvents();
 	LoadTileMap();
+	LoadPropertyList();
 
 	// DEBUG draw scene name label
 	{
@@ -61,9 +62,6 @@ bool GameplayScene::init()
 
 		// load pacman sprite
 		{
-			auto spriteCache = SpriteFrameCache::getInstance();
- 			spriteCache->addSpriteFramesWithFile("TexturePacker_spritesheet.plist");
-
 			auto testSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
 			testSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
 			this->addChild(testSprite);
@@ -71,10 +69,10 @@ bool GameplayScene::init()
 			// create animation
 			{
 				Vector<SpriteFrame*> frames = Vector<SpriteFrame*>();
-				frames.pushBack(spriteCache->getSpriteFrameByName("image_part_051.png")); // small
-				frames.pushBack(spriteCache->getSpriteFrameByName("image_part_049.png")); // medium
-				frames.pushBack(spriteCache->getSpriteFrameByName("image_part_051.png")); // small
-				frames.pushBack(spriteCache->getSpriteFrameByName("image_part_113.png")); // closed
+				frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
+				frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_049.png")); // medium
+				frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
+				frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_113.png")); // closed
 
 				auto animation = Animation::createWithSpriteFrames(frames, 0.1f, 1);
 				auto animate = Animate::create(animation);
@@ -95,6 +93,13 @@ void GameplayScene::LoadTileMap()
 	// TODO assert object group is not null
 	m_ObjectGroup = tilemap->getObjectGroup("Objects");
 	addChild(tilemap, 0, 99);
+}
+
+void GameplayScene::LoadPropertyList()
+{
+	m_SpriteFrameCache = SpriteFrameCache::getInstance();
+	// TODO extract const field
+	m_SpriteFrameCache->addSpriteFramesWithFile("TexturePacker_spritesheet.plist");
 }
 
 void GameplayScene::SubscribeToInputEvents()
