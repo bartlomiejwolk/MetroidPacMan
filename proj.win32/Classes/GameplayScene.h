@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "PacManScene.h"
+#include "Maze.h"
 
 class GameplayScene : public PacManScene
 {
@@ -36,17 +37,11 @@ private:
 	// Font size used for all text in the game.
 	const int m_FontSize = 70;
 
-	cocos2d::TMXObjectGroup* m_ObjectGroup;
-
-	cocos2d::SpriteFrameCache* m_SpriteFrameCache;
+	// TODO remove in destructor
+	// TODO use shared ptr
+	Maze* m_Maze;
 
 	void SubscribeToInputEvents();
-
-	// Loads `.tmx` tilemap file.
-	void LoadTileMap();
-
-	// Loads `.plist` file.
-	void LoadPropertyList();
 
 };
 

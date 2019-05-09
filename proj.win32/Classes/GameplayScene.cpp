@@ -3,6 +3,7 @@
 #include "Utils.h"
 #include "IntroScene.h"
 #include "PacMan.h"
+#include "Maze.h"
 
 USING_NS_CC;
 
@@ -23,11 +24,13 @@ bool GameplayScene::init()
 	DrawHighScoreLabel();
  
 	SubscribeToInputEvents();
-	LoadTileMap();
-	LoadPropertyList();
+
+	// create maze
+	auto maze = Maze();
+	addChild(maze.GetTileMap(), 0, 99);
 
 	// create PacMan object
-	auto pacMan = PacMan(m_SpriteFrameCache);
+	auto pacMan = PacMan(maze.GetSpriteFrameCache());
 	this->addChild(pacMan.GetSpriteNode());
 
 	// DEBUG draw scene name label
@@ -42,12 +45,12 @@ bool GameplayScene::init()
 
 	// TEST
 	{
- 		auto powerUpObject = m_ObjectGroup->getObject("PowerUpTopLeft");
+		/*auto powerUpObject = m_ObjectGroup->getObject("PowerUpTopLeft");
 		auto x = powerUpObject["x"].asInt();
- 		auto y = powerUpObject["y"].asInt();
+		auto y = powerUpObject["y"].asInt();
 		auto width = powerUpObject["width"].asInt();
 		auto height = powerUpObject["height"].asInt();
-		auto rotation = powerUpObject["rotation"].asInt();
+		auto rotation = powerUpObject["rotation"].asInt();*/
 
 		/*auto bgTile = bgLayer->getTileAt(Vec2(1, 3));
 		bgTile->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));*/
@@ -57,24 +60,6 @@ bool GameplayScene::init()
 	}
 
     return true;
-}
-
-void GameplayScene::LoadTileMap() 
-{
-	auto tilemap = TMXTiledMap::create("TileMap.tmx");
-	// TODO assert layers are not null
-	auto bgLayer = tilemap->getLayer("Background");
-	auto gameplayLayer = tilemap->getLayer("Gameplay");
-	// TODO assert object group is not null
-	m_ObjectGroup = tilemap->getObjectGroup("Objects");
-	addChild(tilemap, 0, 99);
-}
-
-void GameplayScene::LoadPropertyList()
-{
-	m_SpriteFrameCache = SpriteFrameCache::getInstance();
-	// TODO extract const field
-	m_SpriteFrameCache->addSpriteFramesWithFile("TexturePacker_spritesheet.plist");
 }
 
 void GameplayScene::SubscribeToInputEvents()
