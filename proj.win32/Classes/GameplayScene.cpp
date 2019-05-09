@@ -2,6 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include "Utils.h"
 #include "IntroScene.h"
+#include "PacMan.h"
 
 USING_NS_CC;
 
@@ -24,7 +25,10 @@ bool GameplayScene::init()
 	SubscribeToInputEvents();
 	LoadTileMap();
 	LoadPropertyList();
-	CreatePacManSprite();
+
+	// create PacMan object
+	auto pacMan = PacMan(m_SpriteFrameCache);
+	this->addChild(pacMan.GetSpriteNode());
 
 	// DEBUG draw scene name label
 	{
@@ -36,6 +40,7 @@ bool GameplayScene::init()
 		this->addChild(label, 1);
 	}
 
+	// TEST
 	{
  		auto powerUpObject = m_ObjectGroup->getObject("PowerUpTopLeft");
 		auto x = powerUpObject["x"].asInt();
@@ -70,26 +75,6 @@ void GameplayScene::LoadPropertyList()
 	m_SpriteFrameCache = SpriteFrameCache::getInstance();
 	// TODO extract const field
 	m_SpriteFrameCache->addSpriteFramesWithFile("TexturePacker_spritesheet.plist");
-}
-
-void GameplayScene::CreatePacManSprite()
-{
-	// create sprite
-	auto testSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
-	testSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
-	this->addChild(testSprite);
-
-	// get sprite frames
-	Vector<SpriteFrame*> frames = Vector<SpriteFrame*>();
-	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
-	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_049.png")); // medium
-	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
-	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_113.png")); // closed
-
-	// create and run animation
-	auto animation = Animation::createWithSpriteFrames(frames, 0.1f, 1);
-	auto animate = Animate::create(animation);
-	testSprite->runAction(RepeatForever::create(animate));
 }
 
 void GameplayScene::SubscribeToInputEvents()

@@ -1,12 +1,34 @@
 #include "PacMan.h"
+#include "cocos2d.h"
+#include "Utils.h"
 
+USING_NS_CC;
 
-
-PacMan::PacMan()
+PacMan::PacMan(SpriteFrameCache* frameCache)
 {
+	m_SpriteFrameCache = frameCache;
+	CreatePacManSprite();
 }
-
 
 PacMan::~PacMan()
 {
+}
+
+void PacMan::CreatePacManSprite()
+{
+	// create sprite
+	m_PacManSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
+	m_PacManSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
+
+	// get sprite frames
+	Vector<SpriteFrame*> frames = Vector<SpriteFrame*>();
+	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
+	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_049.png")); // medium
+	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_051.png")); // small
+	frames.pushBack(m_SpriteFrameCache->getSpriteFrameByName("image_part_113.png")); // closed
+
+	// create and run animation
+	auto animation = Animation::createWithSpriteFrames(frames, 0.1f, 1);
+	auto animate = Animate::create(animation);
+	m_PacManSprite->runAction(RepeatForever::create(animate));
 }
