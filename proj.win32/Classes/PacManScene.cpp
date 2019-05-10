@@ -61,6 +61,7 @@ void PacManScene::DrawHighScoreLabel()
 	// position the label on the screen
 	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
 	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
+	label->setAnchorPoint(Vec2(0.5f, 0));
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
