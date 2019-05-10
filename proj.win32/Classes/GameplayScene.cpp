@@ -33,16 +33,6 @@ bool GameplayScene::init()
 	auto pacMan = PacMan(maze.GetSpriteFrameCache());
 	this->addChild(pacMan.GetSpriteNode());
 
-	// DEBUG draw scene name label
-	{
-		auto label = Label::createWithTTF("GAMEPLAY SCENE", m_FontFilePath, m_FontSize);
-		assert(label && "Error while loading resource!");
-		
-		label->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
-		// add the label as a child to this layer
-		this->addChild(label, 1);
-	}
-
 	// TEST
 	{
 		/*auto powerUpObject = m_ObjectGroup->getObject("PowerUpTopLeft");
