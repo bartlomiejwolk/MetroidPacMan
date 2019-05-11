@@ -30,7 +30,9 @@ bool GameplayScene::init()
 	// create maze
 	{
 		m_Maze = new Maze();
-		addChild(m_Maze->GetTileMap(), 0, 99);
+		TMXTiledMap* mazeTileMap = m_Maze->GetTileMap();
+		mazeTileMap->setPosition(Vec2(768, 300));
+		addChild(mazeTileMap, 0, 99);
 	}
 
 	// Requires maze to be initialized!
