@@ -43,7 +43,7 @@ private:
 
 	void SubscribeToInputEvents();
 
-	void DrawLifes();
+	void DrawLives();
 
 	void DrawFruits();
 

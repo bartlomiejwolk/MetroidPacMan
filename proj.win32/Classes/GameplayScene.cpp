@@ -37,7 +37,7 @@ bool GameplayScene::init()
 
 	// Requires maze to be initialized!
 	{
-		DrawLifes();
+		DrawLives();
 		DrawFruits();
 	}
 
@@ -102,7 +102,7 @@ void GameplayScene::update(float delta)
 {
 }
 
-void GameplayScene::DrawLifes()
+void GameplayScene::DrawLives()
 {
 	// create life sprite
 	auto sprite = Sprite::createWithSpriteFrameName("image_part_051.png");
