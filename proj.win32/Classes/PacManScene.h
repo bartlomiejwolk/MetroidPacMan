@@ -32,6 +32,10 @@ protected:
 
 	void DrawHighScoreLabel();
 
+	void DrawHighScoreValueLabel(int highscore);
+
+	void DrawPlayerScoreValueLabel(int score);
+
 	// TODO rename to DrawCreditLabel
 	void DrawCredits();
 

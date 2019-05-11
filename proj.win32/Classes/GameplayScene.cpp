@@ -22,6 +22,8 @@ bool GameplayScene::init()
 	Draw1UPLabel();
 	Draw2UPLabel();
 	DrawHighScoreLabel();
+	DrawHighScoreValueLabel(99999);
+	DrawPlayerScoreValueLabel(99999);
  
 	SubscribeToInputEvents();
 

@@ -24,14 +24,10 @@ void PacManScene::Draw1UPLabel()
 	printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");*/
 	assert(label && "Error while loading resource!");
 
-	// TODO extract to class fields. Create public init() to initialize before using this class
-	auto openGLVisibleSize = Director::getInstance()->getVisibleSize();
-	auto openGLOrigin = Director::getInstance()->getVisibleOrigin();
-
 	// position the label on the screen
-	float x = openGLOrigin.x + openGLVisibleSize.width / 4;
-	float y = openGLOrigin.y + openGLVisibleSize.height - label->getContentSize().height;
-	label->setAnchorPoint(Vec2(0, 0));
+	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 4 + (label->getContentSize().width / 2);
+	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
+	label->setAnchorPoint(Vec2(0.5f, 0));
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
@@ -61,6 +57,38 @@ void PacManScene::DrawHighScoreLabel()
 	// position the label on the screen
 	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
 	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
+	label->setAnchorPoint(Vec2(0.5f, 0));
+	label->setPosition(Vec2(x, y));
+
+	// add the label as a child to this layer
+	this->addChild(label, 1);
+}
+
+void PacManScene::DrawHighScoreValueLabel(int highscore)
+{
+	std::string highscoreText = std::to_string(highscore);
+	auto label = Label::createWithTTF(highscoreText, m_FontFilePath, m_FontSize);
+	assert(label && "Error while loading resource!");
+
+	// position the label on the screen
+	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
+	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height * 2;
+	label->setAnchorPoint(Vec2(0.5f, 0));
+	label->setPosition(Vec2(x, y));
+
+	// add the label as a child to this layer
+	this->addChild(label, 1);
+}
+
+void PacManScene::DrawPlayerScoreValueLabel(int score)
+{
+	std::string scoreText = std::to_string(score);
+	auto label = Label::createWithTTF(scoreText, m_FontFilePath, m_FontSize);
+	assert(label && "Error while loading resource!");
+
+	// position the label on the screen
+	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 4 + (label->getContentSize().width / 2);
+	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height * 2;
 	label->setAnchorPoint(Vec2(0.5f, 0));
 	label->setPosition(Vec2(x, y));
 
