@@ -28,12 +28,18 @@ bool GameplayScene::init()
 	SubscribeToInputEvents();
 
 	// create maze
-	auto maze = Maze();
-	addChild(maze.GetTileMap(), 0, 99);
+	{
+		m_Maze = new Maze();
+		addChild(m_Maze->GetTileMap(), 0, 99);
+	}
+
+	DrawFruits();
 
 	// create PacMan object
-	auto pacMan = PacMan(maze.GetSpriteFrameCache());
-	this->addChild(pacMan.GetSpriteNode());
+	{
+		auto pacMan = PacMan(m_Maze->GetSpriteFrameCache());
+		this->addChild(pacMan.GetSpriteNode());
+	}
 
 	// TEST
 	{
@@ -88,4 +94,13 @@ void GameplayScene::menuCloseCallback(Ref* pSender)
 
 void GameplayScene::update(float delta)
 {
+}
+
+void GameplayScene::DrawFruits()
+{
+	// create fruit sprite
+	auto sprite = Sprite::createWithSpriteFrameName("image_part_081.png");
+	sprite->setAnchorPoint(Vec2(0, 0));
+	sprite->setPosition(Utils::GetScreenPoint(0.8f, 0));
+	this->addChild(sprite);
 }

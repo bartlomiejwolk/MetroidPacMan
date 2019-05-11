@@ -43,6 +43,8 @@ private:
 
 	void SubscribeToInputEvents();
 
+	void DrawFruits();
+
 };
 
 #endif // __GAMEPLAY_SCENE_H__
