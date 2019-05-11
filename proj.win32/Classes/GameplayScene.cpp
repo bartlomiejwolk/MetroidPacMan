@@ -33,7 +33,11 @@ bool GameplayScene::init()
 		addChild(m_Maze->GetTileMap(), 0, 99);
 	}
 
-	DrawFruits();
+	// Requires maze to be initialized!
+	{
+		DrawLifes();
+		DrawFruits();
+	}
 
 	// create PacMan object
 	{
@@ -96,11 +100,20 @@ void GameplayScene::update(float delta)
 {
 }
 
+void GameplayScene::DrawLifes()
+{
+	// create life sprite
+	auto sprite = Sprite::createWithSpriteFrameName("image_part_051.png");
+	sprite->setAnchorPoint(Vec2(0, 0));
+	sprite->setPosition(Utils::GetScreenPoint(0.3f, 0));
+	this->addChild(sprite);
+}
+
 void GameplayScene::DrawFruits()
 {
 	// create fruit sprite
 	auto sprite = Sprite::createWithSpriteFrameName("image_part_081.png");
 	sprite->setAnchorPoint(Vec2(0, 0));
-	sprite->setPosition(Utils::GetScreenPoint(0.8f, 0));
+	sprite->setPosition(Utils::GetScreenPoint(0.7f, 0));
 	this->addChild(sprite);
 }
