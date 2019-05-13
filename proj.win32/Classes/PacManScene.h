@@ -19,6 +19,10 @@ protected:
 	// Font used for all text in the game.
 	const std::string m_FontFilePath = "fonts/GameCube.ttf";
 
+	// All UI placed above the Maze is attached to this Node.
+	// It allows to move all top UI elements by moving a single Node.
+	cocos2d::Node m_UITop;
+
 	// TODO adjust name
 	// Font size used for all text in the game.
 	const int m_FontSize = 70;

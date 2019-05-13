@@ -1,4 +1,5 @@
 #include "PacManScene.h"
+#include "Utils.h"
 
 USING_NS_CC;
 
@@ -11,6 +12,10 @@ bool PacManScene::init()
 
 	m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
 	m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
+
+	// reposition top UI
+	this->addChild(&m_UITop);
+	m_UITop.setPosition(Vec2(0, -100));
 
 	return true;
 }
@@ -31,7 +36,7 @@ void PacManScene::Draw1UPLabel()
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
-	this->addChild(label, 1);
+	m_UITop.addChild(label, 1);
 }
 
 void PacManScene::Draw2UPLabel()
@@ -46,7 +51,7 @@ void PacManScene::Draw2UPLabel()
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
-	this->addChild(label, 1);
+	m_UITop.addChild(label, 1);
 }
 
 void PacManScene::DrawHighScoreLabel()
@@ -61,7 +66,7 @@ void PacManScene::DrawHighScoreLabel()
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
-	this->addChild(label, 1);
+	m_UITop.addChild(label, 1);
 }
 
 void PacManScene::DrawHighScoreValueLabel(int highscore)
@@ -77,7 +82,7 @@ void PacManScene::DrawHighScoreValueLabel(int highscore)
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
-	this->addChild(label, 1);
+	m_UITop.addChild(label, 1);
 }
 
 void PacManScene::DrawPlayerScoreValueLabel(int score)
@@ -93,7 +98,7 @@ void PacManScene::DrawPlayerScoreValueLabel(int score)
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
-	this->addChild(label, 1);
+	m_UITop.addChild(label, 1);
 }
 
 void PacManScene::DrawCredits()
