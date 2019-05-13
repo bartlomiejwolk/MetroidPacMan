@@ -21,13 +21,14 @@ protected:
 
 	// All UI placed above the Maze is attached to this Node.
 	// It allows to move all top UI elements by moving a single Node.
+	// Anchor point and position is set to (0, 0) upon creation. Initialized in `init()`.
 	cocos2d::Node m_UITop;
 
 	cocos2d::Node m_UIBotton;
 
 	// TODO adjust name
 	// Font size used for all text in the game.
-	const int m_FontSize = 70;
+	const int m_FontSize = 50;
 
 	virtual bool init() override;
 

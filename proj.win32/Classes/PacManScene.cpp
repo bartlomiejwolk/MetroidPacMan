@@ -13,10 +13,10 @@ bool PacManScene::init()
 	m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
 	m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
 
-	// reposition top and bottom UI UI
+	// reposition top and bottom UI
 	this->addChild(&m_UITop);
 	this->addChild(&m_UIBotton);
-	m_UITop.setPosition(Vec2(0, -100));
+	m_UITop.setPosition(Vec2(0, -180));
 	m_UIBotton.setPosition(Vec2(0, 150));
 
 	return true;
@@ -32,8 +32,8 @@ void PacManScene::Draw1UPLabel()
 	assert(label && "Error while loading resource!");
 
 	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 4 + (label->getContentSize().width / 2);
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
+	float x = m_OpenGLVisibleSize.width / 3;
+	float y = m_OpenGLVisibleSize.height - label->getContentSize().height;
 	label->setAnchorPoint(Vec2(0.5f, 0));
 	label->setPosition(Vec2(x, y));
 
@@ -47,9 +47,9 @@ void PacManScene::Draw2UPLabel()
 	assert(label && "Error while loading resource!");
 
 	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.75;
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
-	label->setAnchorPoint(Vec2(1, 0));
+	float x = m_OpenGLVisibleSize.width - m_OpenGLVisibleSize.width / 3;
+	float y = m_OpenGLVisibleSize.height - label->getContentSize().height;
+	label->setAnchorPoint(Vec2(0.5f, 0));
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
@@ -62,8 +62,8 @@ void PacManScene::DrawHighScoreLabel()
 	assert(label && "Error while loading resource!");
 
 	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height;
+	float x = m_OpenGLVisibleSize.width / 2;
+	float y = m_OpenGLVisibleSize.height - label->getContentSize().height;
 	label->setAnchorPoint(Vec2(0.5f, 0));
 	label->setPosition(Vec2(x, y));
 
@@ -78,8 +78,8 @@ void PacManScene::DrawHighScoreValueLabel(int highscore)
 	assert(label && "Error while loading resource!");
 
 	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 2;
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height * 2;
+	float x = m_OpenGLVisibleSize.width / 2;
+	float y = m_OpenGLVisibleSize.height - label->getContentSize().height * 2;
 	label->setAnchorPoint(Vec2(0.5f, 0));
 	label->setPosition(Vec2(x, y));
 
@@ -94,8 +94,8 @@ void PacManScene::DrawPlayerScoreValueLabel(int score)
 	assert(label && "Error while loading resource!");
 
 	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width / 4 + (label->getContentSize().width / 2);
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height - label->getContentSize().height * 2;
+	float x = m_OpenGLVisibleSize.width / 3;
+	float y = m_OpenGLVisibleSize.height - label->getContentSize().height * 2;
 	label->setAnchorPoint(Vec2(0.5f, 0));
 	label->setPosition(Vec2(x, y));
 
@@ -109,8 +109,8 @@ void PacManScene::DrawCredits()
 	assert(label && "Error while loading resource!");
 
 	// position the label on the screen
-	float x = m_OpenGLOrigin.x + m_OpenGLVisibleSize.width * 0.25;
-	float y = m_OpenGLOrigin.y + m_OpenGLVisibleSize.height * 0.01;
+	float x = m_OpenGLVisibleSize.width * 0.25;
+	float y = m_OpenGLVisibleSize.height * 0.01;
 	label->setAnchorPoint(Vec2(0, 0));
 	label->setPosition(Vec2(x, y));
 
