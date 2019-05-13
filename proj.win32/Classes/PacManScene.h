@@ -23,6 +23,8 @@ protected:
 	// It allows to move all top UI elements by moving a single Node.
 	cocos2d::Node m_UITop;
 
+	cocos2d::Node m_UIBotton;
+
 	// TODO adjust name
 	// Font size used for all text in the game.
 	const int m_FontSize = 70;

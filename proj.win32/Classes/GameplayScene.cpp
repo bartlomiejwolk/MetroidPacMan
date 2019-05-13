@@ -108,7 +108,7 @@ void GameplayScene::DrawLives()
 	auto sprite = Sprite::createWithSpriteFrameName("image_part_051.png");
 	sprite->setAnchorPoint(Vec2(0, 0));
 	sprite->setPosition(Utils::GetScreenPoint(0.3f, 0));
-	this->addChild(sprite);
+	m_UIBotton.addChild(sprite);
 }
 
 void GameplayScene::DrawFruits()
@@ -117,5 +117,5 @@ void GameplayScene::DrawFruits()
 	auto sprite = Sprite::createWithSpriteFrameName("image_part_081.png");
 	sprite->setAnchorPoint(Vec2(0, 0));
 	sprite->setPosition(Utils::GetScreenPoint(0.7f, 0));
-	this->addChild(sprite);
+	m_UIBotton.addChild(sprite);
 }

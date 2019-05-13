@@ -13,9 +13,11 @@ bool PacManScene::init()
 	m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
 	m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
 
-	// reposition top UI
+	// reposition top and bottom UI UI
 	this->addChild(&m_UITop);
+	this->addChild(&m_UIBotton);
 	m_UITop.setPosition(Vec2(0, -100));
+	m_UIBotton.setPosition(Vec2(0, 150));
 
 	return true;
 }
@@ -113,6 +115,6 @@ void PacManScene::DrawCredits()
 	label->setPosition(Vec2(x, y));
 
 	// add the label as a child to this layer
-	this->addChild(label, 1);
+	m_UIBotton.addChild(label, 1);
 }
 
