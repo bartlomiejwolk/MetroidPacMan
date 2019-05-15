@@ -26,6 +26,8 @@ public:
 	}
 
 	// Returns tile position in world space. Tile anchor point is bottom-left.
+	// First element specifies column, second - row (it's defined this way in the .tmx file). 
+	// First tile is at (0, 0).
 	cocos2d::Vec2 TileToWorldPos(const cocos2d::Vec2& tileGridPos) const;
 
 private:

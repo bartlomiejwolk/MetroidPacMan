@@ -36,3 +36,9 @@ void PacMan::CreatePacManSprite()
 	auto animate = Animate::create(animation);
 	m_PacManSprite->runAction(RepeatForever::create(animate));
 }
+
+void PacMan::MoveToPoint(Vec2 point)
+{
+	MoveTo* moveToAction = MoveTo::create(1, point);
+	m_PacManSprite->runAction(moveToAction);
+}
