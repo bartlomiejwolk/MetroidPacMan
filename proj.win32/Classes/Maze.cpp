@@ -16,10 +16,8 @@ Maze::~Maze()
 void Maze::LoadTileMap()
 {
 	m_TiledMap = TMXTiledMap::create("TileMap.tmx");
-	// TODO assert layers are not null
-	auto bgLayer = m_TiledMap->getLayer("Background");
-	auto gameplayLayer = m_TiledMap->getLayer("Gameplay");
-	// TODO assert object group is not null
+	// TODO assert not null
+	m_BackgroundLayer = m_TiledMap->getLayer("Background");
 	m_ObjectGroup = m_TiledMap->getObjectGroup("Objects");
 }
 
@@ -29,3 +27,13 @@ void Maze::LoadPropertyList()
 	// TODO extract const field
 	m_SpriteFrameCache->addSpriteFramesWithFile("TexturePacker_spritesheet.plist");
 }
+
+Vec2 Maze::TileToWorldPos(const Vec2 & tileGridPos) const
+{
+	Sprite* tileSprite = GetBackgroundLayer()->getTileAt(tileGridPos);
+	Vec2 tileLocalPos = tileSprite->getPosition();
+	Vec2 tileWorldPos = tileSprite->getParent()->convertToWorldSpace(tileLocalPos);
+
+	return tileWorldPos;
+}
+

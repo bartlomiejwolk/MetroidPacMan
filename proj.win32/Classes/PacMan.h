@@ -2,16 +2,24 @@
 
 #include "cocos2d.h"
 
+// `PacMan` class should not depend on the `Maze` class.
 class PacMan
 {
 public:
 	PacMan(cocos2d::SpriteFrameCache* frameCache);
+	
 	~PacMan();
 
 	// Returns PacMan sprite node.
 	cocos2d::Sprite* GetSpriteNode()
 	{
 		return m_PacManSprite;
+	}
+
+	// Sets PacMan sprite position relative to the parent node.
+	void SetPosition(cocos2d::Vec2 position)
+	{
+		m_PacManSprite->setPosition(position);
 	}
 
 private:

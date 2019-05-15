@@ -4,6 +4,7 @@
 #include "IntroScene.h"
 #include "PacMan.h"
 #include "Maze.h"
+#include "PlayerPawnController.h"
 
 USING_NS_CC;
 
@@ -43,8 +44,9 @@ bool GameplayScene::init()
 
 	// create PacMan object
 	{
-		auto pacMan = PacMan(m_Maze->GetSpriteFrameCache());
-		this->addChild(pacMan.GetSpriteNode());
+		// TODO destroy PacMan in destructor
+		m_PacMan = new PacMan(m_Maze->GetSpriteFrameCache());
+		this->addChild(m_PacMan->GetSpriteNode());
 	}
 
 	// TEST
@@ -61,6 +63,15 @@ bool GameplayScene::init()
 
 		//auto bgTile = bgLayer->getTileAt(Vec2(1, 1));
 		//auto objectTile = objectLayer->getTileAt(Vec2(1, 1));
+	}
+
+	// create Player Pawn Controller
+	{
+		PlayerPawnController ppc = PlayerPawnController();
+
+		// set PacMan position to tile (1, 1)
+		Vec2 newPos = m_Maze->TileToWorldPos(Vec2(1, 1));
+		m_PacMan->SetPosition(newPos);
 	}
 
     return true;

@@ -18,6 +18,8 @@ void PacMan::CreatePacManSprite()
 {
 	// create sprite
 	m_PacManSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
+	m_PacManSprite->setAnchorPoint(Vec2(0.25f, 0.25f));
+	// TODO define default position in header file
 	m_PacManSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
 
 	// get sprite frames

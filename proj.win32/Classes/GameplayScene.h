@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "PacManScene.h"
 #include "Maze.h"
+#include "PacMan.h"
 
 class GameplayScene : public PacManScene
 {
@@ -40,6 +41,9 @@ private:
 	// TODO remove in destructor
 	// TODO use shared ptr
 	Maze* m_Maze;
+
+	// TODO use unique ptr
+	PacMan* m_PacMan;
 
 	void SubscribeToInputEvents();
 
