@@ -18,6 +18,7 @@ void PacMan::CreatePacManSprite()
 {
 	// create sprite
 	m_PacManSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
+	// offset anchor point to avoid sprite clipping into maze walls
 	m_PacManSprite->setAnchorPoint(Vec2(0.25f, 0.25f));
 	// TODO define default position in header file
 	m_PacManSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
