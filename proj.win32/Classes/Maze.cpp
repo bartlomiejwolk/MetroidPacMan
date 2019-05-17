@@ -32,6 +32,7 @@ Vec2 Maze::TileToWorldPos(const Vec2 & tileGridPos) const
 {
 	Sprite* tileSprite = GetBackgroundLayer()->getTileAt(tileGridPos);
 	Vec2 tileLocalPos = tileSprite->getPosition();
+	// TODO test without `getParent()`
 	Vec2 tileWorldPos = tileSprite->getParent()->convertToWorldSpace(tileLocalPos);
 
 	return tileWorldPos;
