@@ -20,6 +20,10 @@ bool PlayerPawnController::init()
 	return true;
 }
 
+void PlayerPawnController::update(float delta)
+{
+}
+
 void PlayerPawnController::OnPawnReachedTargetPoint()
 {
 	CCLOG("OnPawnReachedTargetPoint");

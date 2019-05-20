@@ -8,6 +8,8 @@ public:
 	static PlayerPawnController* create();
 
 	virtual bool init() override;
+	
+	virtual void update(float delta) override;
 
 	void OnPawnReachedTargetPoint();
 };
