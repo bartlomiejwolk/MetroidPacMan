@@ -40,5 +40,7 @@ void PacMan::CreatePacManSprite()
 void PacMan::MoveToPoint(Vec2 point)
 {
 	MoveTo* moveToAction = MoveTo::create(1, point);
-	m_PacManSprite->runAction(moveToAction);
+	auto callback = CallFunc::create([this]() { PacMan::TargetPointReached.emit(); });
+	auto sequence = Sequence::create(moveToAction, callback, nullptr);
+	m_PacManSprite->runAction(sequence);
 }

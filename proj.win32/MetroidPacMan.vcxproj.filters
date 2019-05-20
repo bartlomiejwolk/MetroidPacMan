@@ -41,5 +41,6 @@
     <ClInclude Include="Classes\PacManPC.h" />
     <ClInclude Include="Classes\Maze.h" />
     <ClInclude Include="Classes\PlayerPawnController.h" />
+    <ClInclude Include="Classes\Signal.h" />
   </ItemGroup>
 </Project>

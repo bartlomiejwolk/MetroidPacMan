@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "Signal.h"
 
 // `PacMan` class should not depend on the `Maze` class.
 class PacMan
@@ -9,6 +10,8 @@ public:
 	PacMan(cocos2d::SpriteFrameCache* frameCache);
 	
 	~PacMan();
+
+	Signal<> TargetPointReached;
 
 	// Returns PacMan sprite node.
 	cocos2d::Sprite* GetSpriteNode()

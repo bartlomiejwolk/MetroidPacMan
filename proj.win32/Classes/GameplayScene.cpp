@@ -69,6 +69,9 @@ bool GameplayScene::init()
 	{
 		PlayerPawnController ppc = PlayerPawnController();
 
+		// subscribe PC to PacMan signal
+		m_PacMan->TargetPointReached.connect_member(&ppc, &PlayerPawnController::OnPawnReachedTargetPoint);
+
 		// set PacMan position to tile (1, 1)
 		Vec2 newPos = m_Maze->TileToWorldPos(Vec2(1, 1));
 		m_PacMan->SetPosition(newPos);
