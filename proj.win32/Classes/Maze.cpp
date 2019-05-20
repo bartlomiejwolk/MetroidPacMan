@@ -18,7 +18,7 @@ void Maze::LoadTileMap()
 	m_TiledMap = TMXTiledMap::create("TileMap.tmx");
 	// TODO assert not null
 	m_BackgroundLayer = m_TiledMap->getLayer("Background");
-	m_ObjectGroup = m_TiledMap->getObjectGroup("Objects");
+	//m_ObjectGroup = m_TiledMap->getObjectGroup("Objects");
 }
 
 void Maze::LoadPropertyList()
@@ -30,7 +30,9 @@ void Maze::LoadPropertyList()
 
 Vec2 Maze::TileToWorldPos(const Vec2 & tileGridPos) const
 {
-	Sprite* tileSprite = GetBackgroundLayer()->getTileAt(tileGridPos);
+	// in the TMX file, first coordinate is column, second is row
+	Vec2 reversedTilePos = Vec2(tileGridPos.y, tileGridPos.x);
+	Sprite* tileSprite = GetBackgroundLayer()->getTileAt(reversedTilePos);
 	Vec2 tileLocalPos = tileSprite->getPosition();
 	// TODO test without `getParent()`
 	Vec2 tileWorldPos = tileSprite->getParent()->convertToWorldSpace(tileLocalPos);

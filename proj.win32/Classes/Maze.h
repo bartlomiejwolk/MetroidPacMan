@@ -26,12 +26,12 @@ public:
 	}
 
 	// Returns tile position in world space. Tile anchor point is bottom-left.
-	// First element specifies column, second - row (it's defined this way in the .tmx file). 
-	// First tile is at (0, 0).
+	// First element specifies row, second - column.
+	// First tile is at (0, 0), top-left of the screen.
 	cocos2d::Vec2 TileToWorldPos(const cocos2d::Vec2& tileGridPos) const;
 
 private:
-	cocos2d::TMXObjectGroup* m_ObjectGroup;
+	//cocos2d::TMXObjectGroup* m_ObjectGroup;
 
 	cocos2d::SpriteFrameCache* m_SpriteFrameCache;
 
@@ -39,7 +39,7 @@ private:
 
 	cocos2d::TMXLayer* m_BackgroundLayer;
 
-	cocos2d::TMXLayer* m_ObjectLayer;
+	//cocos2d::TMXLayer* m_ObjectLayer;
 
 	// Loads `.tmx` tilemap file.
 	void LoadTileMap();
