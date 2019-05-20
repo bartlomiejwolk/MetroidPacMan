@@ -67,17 +67,20 @@ bool GameplayScene::init()
 
 	// create Player Pawn Controller
 	{
-		PlayerPawnController ppc = PlayerPawnController();
+		PlayerPawnController* ppc = PlayerPawnController::create();
+		this->addChild(ppc);
 
 		// subscribe PC to PacMan signal
-		m_PacMan->TargetPointReached.connect_member(&ppc, &PlayerPawnController::OnPawnReachedTargetPoint);
+		m_PacMan->TargetPointReached.connect_member(ppc, &PlayerPawnController::OnPawnReachedTargetPoint);
 
 		// set PacMan position to tile (1, 1)
 		Vec2 newPos = m_Maze->TileToWorldPos(Vec2(1, 1));
 		m_PacMan->SetPosition(newPos);
 
 		// move to tile (2, 1)
-		m_PacMan->MoveToPoint(m_Maze->TileToWorldPos(Vec2(5, 1)));
+		Vec2 worldPos = m_Maze->TileToWorldPos(Vec2(1, 13));
+		CCLOG("target tile world pos: %f", worldPos);
+		m_PacMan->MoveToPoint(worldPos);
 	}
 
     return true;

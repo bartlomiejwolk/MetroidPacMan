@@ -4,6 +4,7 @@
 
 // TODO consider making it static or a singleton
 // TODO create `Sprite* GetTileAt(Vec2)`. Use `GetBackgroundLayer()->getTileAt(Vec2)`
+// TODO make sure it's destroyed when no longer used
 class Maze
 {
 public:

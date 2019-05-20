@@ -1,9 +1,13 @@
 #pragma once
-class PlayerPawnController
+
+#include "cocos2d.h"
+
+class PlayerPawnController : public cocos2d::Node
 {
 public:
-	PlayerPawnController();
-	~PlayerPawnController();
+	static PlayerPawnController* create();
+
+	virtual bool init() override;
 
 	void OnPawnReachedTargetPoint();
 };
