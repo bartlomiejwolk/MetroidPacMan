@@ -30,6 +30,7 @@ bool GameplayScene::init()
 
 	// create maze
 	{
+		// TODO add delete
 		m_Maze = new Maze();
 		TMXTiledMap* mazeTileMap = m_Maze->GetTileMap();
 		mazeTileMap->setPosition(Vec2(768, 300));
