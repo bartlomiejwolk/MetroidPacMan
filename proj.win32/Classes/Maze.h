@@ -27,9 +27,11 @@ public:
 	}
 
 	// Returns tile position in world space. Tile anchor point is bottom-left.
-	// First element specifies row, second - column.
 	// First tile is at (0, 0), top-left of the screen.
+	// tileGridPos First element - column, second - row (it's defined this way in the TMX file).
 	cocos2d::Vec2 TileToWorldPos(const cocos2d::Vec2& tileGridPos) const;
+
+	bool IsWall(cocos2d::Vec2 tileGridPos) const;
 
 private:
 	//cocos2d::TMXObjectGroup* m_ObjectGroup;
@@ -38,7 +40,11 @@ private:
 
 	cocos2d::TMXTiledMap* m_TiledMap;
 
+	// Contains black background.
 	cocos2d::TMXLayer* m_BackgroundLayer;
+
+	// Contains maze walls.
+	cocos2d::TMXLayer* m_WallsLayer;
 
 	//cocos2d::TMXLayer* m_ObjectLayer;
 

@@ -32,8 +32,16 @@ private:
 	// TODO use shared pointer
 	PacMan* m_PacMan;
 
+	// Current Pawn position in tilemap coordinates.
+	// Updated in `OnPawnReachedTargetPoint()`.
+	cocos2d::Vec2 m_CurrentPawnTilePos = cocos2d::Vec2(1, 1);
+
 	virtual bool init() override;
 
 	virtual void onEnter() override;
+
+	void MovePacManRight();
+
+	bool RightTileValid();
 };
 

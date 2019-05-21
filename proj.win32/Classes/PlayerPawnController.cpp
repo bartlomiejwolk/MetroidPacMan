@@ -22,13 +22,11 @@ bool PlayerPawnController::init()
 
 void PlayerPawnController::onEnter()
 {
-	// set PacMan position to tile (1, 1)
-	Vec2 newPos = m_Maze->TileToWorldPos(Vec2(1, 1));
+	// set PacMan initial position
+	Vec2 newPos = m_Maze->TileToWorldPos(m_CurrentPawnTilePos);
 	m_PacMan->SetPosition(newPos);
-
-	// move to tile (2, 1)
-	Vec2 worldPos = m_Maze->TileToWorldPos(Vec2(1, 13));
-	m_PacMan->MoveToPoint(worldPos);
+	
+	MovePacManRight();
 }
 
 void PlayerPawnController::update(float delta)
@@ -38,4 +36,25 @@ void PlayerPawnController::update(float delta)
 void PlayerPawnController::OnPawnReachedTargetPoint()
 {
 	CCLOG("OnPawnReachedTargetPoint");
+
+	// TODO try using `m_CurrentPawnTilePos++`
+	m_CurrentPawnTilePos = Vec2(m_CurrentPawnTilePos.x + 1, 1);
+	// TODO create custom macro to log Vec2
+	CCLOG("m_CurrentPawnTilePos: (%f, %f)", m_CurrentPawnTilePos.x, m_CurrentPawnTilePos.y);
+
+	if (RightTileValid())
+	{
+		MovePacManRight();
+	}
+}
+
+void PlayerPawnController::MovePacManRight()
+{
+	Vec2 worldPos = m_Maze->TileToWorldPos(Vec2(m_CurrentPawnTilePos.x + 1, 1));
+	m_PacMan->MoveToPoint(worldPos);
+}
+
+bool PlayerPawnController::RightTileValid()
+{
+	return !m_Maze->IsWall(Vec2(m_CurrentPawnTilePos.x + 1, 1));
 }
