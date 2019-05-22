@@ -26,8 +26,6 @@ bool GameplayScene::init()
 	DrawHighScoreValueLabel(99999);
 	DrawPlayerScoreValueLabel(99999);
  
-	SubscribeToInputEvents();
-
 	// create maze
 	{
 		// TODO add delete
@@ -85,46 +83,13 @@ void GameplayScene::HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d
 {
 	switch (keyCode)
 	{
-		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-		{
-			CCLOG("KEY_LEFT_ARROW");
-			break;
-		}
-		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-		{
-			CCLOG("KEY_RIGHT_ARROW");
-			break;
-		}
-		case EventKeyboard::KeyCode::KEY_UP_ARROW:
-		{
-			CCLOG("KEY_UP_ARROW");
-			break;
-		}
-		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-		{
-			CCLOG("KEY_DOWN_ARROW");
-			break;
-		}
-	}
-}
-
-void GameplayScene::SubscribeToInputEvents()
-{
-	auto eventListener = EventListenerKeyboard::create();
-	eventListener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
+	case EventKeyboard::KeyCode::KEY_ESCAPE:
 	{
-		switch (keyCode)
-		{
-		case EventKeyboard::KeyCode::KEY_ESCAPE:
-		{
-			auto introScene = IntroScene::createScene();
-			Director::getInstance()->replaceScene(introScene);
-			break;
-		}
-		}
-	};
-	// must be called after event handlers have been assigned
-	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
+		auto introScene = IntroScene::createScene();
+		Director::getInstance()->replaceScene(introScene);
+		break;
+	}
+	}
 }
 
 void GameplayScene::menuCloseCallback(Ref* pSender)

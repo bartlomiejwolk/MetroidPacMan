@@ -24,7 +24,6 @@ bool PacManScene::init()
 	return true;
 }
 
-// TODO move to a custom base scene class
 void PacManScene::SubscribeToInputEvents()
 {
 	auto eventListener = EventListenerKeyboard::create();

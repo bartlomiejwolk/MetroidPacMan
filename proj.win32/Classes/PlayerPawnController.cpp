@@ -17,16 +17,55 @@ PlayerPawnController* PlayerPawnController::create()
 
 bool PlayerPawnController::init()
 {
+	SubscribeToInputEvents();
+
 	return true;
 }
 
 void PlayerPawnController::onEnter()
 {
+	Node::onEnter();
+
 	// set PacMan initial position
 	Vec2 newPos = m_Maze->TileToWorldPos(m_CurrentPawnTilePos);
 	m_PacMan->SetPosition(newPos);
 	
 	MovePacManRight();
+}
+
+void PlayerPawnController::SubscribeToInputEvents()
+{
+	auto eventListener = EventListenerKeyboard::create();
+	eventListener->onKeyPressed = CC_CALLBACK_2(PlayerPawnController::HandleInput, this);
+	// NOTE: must be called after event handlers have been assigned
+	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
+}
+
+void PlayerPawnController::HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event)
+{
+	switch (keyCode)
+	{
+	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+	{
+		CCLOG("KEY_LEFT_ARROW");
+		break;
+	}
+	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+	{
+		CCLOG("KEY_RIGHT_ARROW");
+		break;
+	}
+	case EventKeyboard::KeyCode::KEY_UP_ARROW:
+	{
+		CCLOG("KEY_UP_ARROW");
+		break;
+	}
+	case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+	{
+		CCLOG("KEY_DOWN_ARROW");
+		break;
+	}
+	}
 }
 
 void PlayerPawnController::update(float delta)

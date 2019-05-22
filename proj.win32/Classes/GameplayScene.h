@@ -47,8 +47,6 @@ private:
 
 	virtual void HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event) override;
 
-	void SubscribeToInputEvents();
-
 	void DrawLives();
 
 	void DrawFruits();

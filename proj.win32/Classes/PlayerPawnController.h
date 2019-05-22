@@ -40,6 +40,11 @@ private:
 
 	virtual void onEnter() override;
 
+	// Called in `init()`.
+	void SubscribeToInputEvents();
+
+	void HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event);
+
 	void MovePacManRight();
 
 	bool RightTileValid();
