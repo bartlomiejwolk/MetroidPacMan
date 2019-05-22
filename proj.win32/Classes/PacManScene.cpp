@@ -10,6 +10,8 @@ bool PacManScene::init()
 		return false;
 	}
 
+	SubscribeToInputEvents();
+
 	m_OpenGLVisibleSize = Director::getInstance()->getVisibleSize();
 	m_OpenGLOrigin = Director::getInstance()->getVisibleOrigin();
 
@@ -20,6 +22,19 @@ bool PacManScene::init()
 	m_UIBotton.setPosition(Vec2(0, 150));
 
 	return true;
+}
+
+// TODO move to a custom base scene class
+void PacManScene::SubscribeToInputEvents()
+{
+	auto eventListener = EventListenerKeyboard::create();
+	eventListener->onKeyPressed = CC_CALLBACK_2(PacManScene::HandleInput, this);
+	// NOTE: must be called after event handlers have been assigned
+	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
+}
+
+void PacManScene::HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event)
+{
 }
 
 void PacManScene::Draw1UPLabel()

@@ -18,9 +18,7 @@ public:
     CREATE_FUNC(IntroScene);
 
 private:
-	
-	// Called in `init()`.
-	void SubscribeToInputEvents();
+	virtual void HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event) override;
 
 	void DrawCharacterNicknames();
 

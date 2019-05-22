@@ -26,30 +26,21 @@ bool IntroScene::init()
 	DrawCredits();
 	RunPacManAnimation();
 
-	SubscribeToInputEvents();
-
     return true;
 }
 
-// TODO move to a custom base scene class
-void IntroScene::SubscribeToInputEvents()
+void IntroScene::HandleInput(EventKeyboard::KeyCode keyCode, Event* event)
 {
-	auto eventListener = EventListenerKeyboard::create();
-	eventListener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
+	switch (keyCode)
 	{
-		switch (keyCode)
-		{
-		case EventKeyboard::KeyCode::KEY_SPACE:
-		case EventKeyboard::KeyCode::KEY_ENTER:
-		{
-			auto mainMenuScene = MainMenuScene::createScene();
-			Director::getInstance()->replaceScene(mainMenuScene);
-			break;
-		}
-		}
-	};
-	// must be called after event handlers have been assigned
-	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
+	case EventKeyboard::KeyCode::KEY_SPACE:
+	case EventKeyboard::KeyCode::KEY_ENTER:
+	{
+		auto mainMenuScene = MainMenuScene::createScene();
+		Director::getInstance()->replaceScene(mainMenuScene);
+		break;
+	}
+	}
 }
 
 void IntroScene::RunPacManAnimation()

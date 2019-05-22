@@ -34,7 +34,7 @@ private:
 	// Font size used for all text in the game.
 	const int m_FontSize = 70;
 
-	void SubscribeToInputEvents();
+	virtual void HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event) override;
 
 };
 

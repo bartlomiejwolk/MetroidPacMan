@@ -81,6 +81,33 @@ bool GameplayScene::init()
     return true;
 }
 
+void GameplayScene::HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event)
+{
+	switch (keyCode)
+	{
+		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+		{
+			CCLOG("KEY_LEFT_ARROW");
+			break;
+		}
+		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+		{
+			CCLOG("KEY_RIGHT_ARROW");
+			break;
+		}
+		case EventKeyboard::KeyCode::KEY_UP_ARROW:
+		{
+			CCLOG("KEY_UP_ARROW");
+			break;
+		}
+		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+		{
+			CCLOG("KEY_DOWN_ARROW");
+			break;
+		}
+	}
+}
+
 void GameplayScene::SubscribeToInputEvents()
 {
 	auto eventListener = EventListenerKeyboard::create();

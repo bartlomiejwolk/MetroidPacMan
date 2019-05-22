@@ -45,6 +45,8 @@ private:
 	// TODO use unique ptr
 	PacMan* m_PacMan;
 
+	virtual void HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event) override;
+
 	void SubscribeToInputEvents();
 
 	void DrawLives();

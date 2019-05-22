@@ -2,6 +2,7 @@
 
 #include "cocos2d.h"
 
+// TODO rename to SceneBase
 class PacManScene : public cocos2d::Scene
 {
 protected:
@@ -31,6 +32,11 @@ protected:
 	const int m_FontSize = 50;
 
 	virtual bool init() override;
+
+	// Called in `init()`.
+	void SubscribeToInputEvents();
+
+	virtual void HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event);
 
 	void Draw1UPLabel();
 

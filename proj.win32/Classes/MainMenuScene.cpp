@@ -22,8 +22,6 @@ bool MainMenuScene::init()
 	DrawHighScoreLabel();
 	DrawCredits();
 
-	SubscribeToInputEvents();
-
 	// draw scene name label
 	{
 		auto label = Label::createWithTTF("MAIN MENU SCENE", m_FontFilePath, m_FontSize);
@@ -37,24 +35,18 @@ bool MainMenuScene::init()
     return true;
 }
 
-void MainMenuScene::SubscribeToInputEvents()
+void MainMenuScene::HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event)
 {
-	auto eventListener = EventListenerKeyboard::create();
-	eventListener->onKeyPressed = [](EventKeyboard::KeyCode keyCode, Event* event)
+	switch (keyCode)
 	{
-		switch (keyCode)
-		{
-		case EventKeyboard::KeyCode::KEY_SPACE:
-		case EventKeyboard::KeyCode::KEY_ENTER:
-		{
-			auto gameplayScene = GameplayScene::createScene();
-			Director::getInstance()->replaceScene(gameplayScene);
-			break;
-		}
-		}
-	};
-	// must be called after event handlers have been assigned
-	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
+	case EventKeyboard::KeyCode::KEY_SPACE:
+	case EventKeyboard::KeyCode::KEY_ENTER:
+	{
+		auto gameplayScene = GameplayScene::createScene();
+		Director::getInstance()->replaceScene(gameplayScene);
+		break;
+	}
+	}
 }
 
 void MainMenuScene::menuCloseCallback(Ref* pSender)
