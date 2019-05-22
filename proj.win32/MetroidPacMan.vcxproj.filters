@@ -42,5 +42,6 @@
     <ClInclude Include="Classes\Maze.h" />
     <ClInclude Include="Classes\PlayerPawnController.h" />
     <ClInclude Include="Classes\Signal.h" />
+    <ClInclude Include="Classes\Enums.h" />
   </ItemGroup>
 </Project>

@@ -3,9 +3,21 @@
 #include "cocos2d.h"
 #include "Maze.h"
 #include "PacMan.h"
+#include "Enums.h"
 
 class PlayerPawnController : public cocos2d::Node
 {
+	
+
+	enum class PawnState
+	{
+		// Pawn is waiting new target point coordinates.
+		WAITING,
+
+		// Pawn is moving towards target point.
+		MOVING, 
+	};
+
 public:
 	static PlayerPawnController* create();
 
@@ -32,9 +44,17 @@ private:
 	// TODO use shared pointer
 	PacMan* m_PacMan;
 
-	// Current Pawn position in tilemap coordinates.
+	// Last tile that the Pawn arrived to in tilemap coordinates.
 	// Updated in `OnPawnReachedTargetPoint()`.
-	cocos2d::Vec2 m_CurrentPawnTilePos = cocos2d::Vec2(1, 1);
+	cocos2d::Vec2 m_LastPawnTilePos = cocos2d::Vec2(1, 1);
+
+	// The direction that the Pawn is currently heading towards.
+	Direction m_PawnDirection = Direction::NONE;
+
+	// Updated with player input.
+	Direction m_InputDirection = Direction::NONE;
+
+	PawnState m_PawnState = PawnState::WAITING;
 
 	virtual bool init() override;
 
@@ -47,6 +67,5 @@ private:
 
 	void MovePacManRight();
 
-	bool RightTileValid();
+	bool TileValid(cocos2d::Vec2 tileMapPos);
 };
-

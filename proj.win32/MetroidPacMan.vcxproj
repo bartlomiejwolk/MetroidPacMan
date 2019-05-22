@@ -173,6 +173,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="Classes\PlayerPawnController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Classes\Enums.h" />
     <ClInclude Include="Classes\GameplayScene.h" />
     <ClInclude Include="Classes\IntroScene.h" />
     <ClInclude Include="Classes\Main.h" />

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cocos2d.h"
+#include "Enums.h"
 
 // TODO consider making it static or a singleton
 // TODO create `Sprite* GetTileAt(Vec2)`. Use `GetBackgroundLayer()->getTileAt(Vec2)`
@@ -33,6 +34,8 @@ public:
 
 	bool IsWall(cocos2d::Vec2 tileGridPos) const;
 
+	bool IsWaypoint(cocos2d::Vec2 tileGridPos) const;
+
 private:
 	//cocos2d::TMXObjectGroup* m_ObjectGroup;
 
@@ -45,6 +48,8 @@ private:
 
 	// Contains maze walls.
 	cocos2d::TMXLayer* m_WallsLayer;
+
+	cocos2d::TMXLayer* m_WaypointsLayer;
 
 	//cocos2d::TMXLayer* m_ObjectLayer;
 

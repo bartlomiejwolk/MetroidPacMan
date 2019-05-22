@@ -19,6 +19,7 @@ void Maze::LoadTileMap()
 	// TODO assert not null
 	m_BackgroundLayer = m_TiledMap->getLayer("Background");
 	m_WallsLayer = m_TiledMap->getLayer("Walls");
+	m_WaypointsLayer = m_TiledMap->getLayer("Waypoints");
 	//m_ObjectGroup = m_TiledMap->getObjectGroup("Objects");
 }
 
@@ -43,6 +44,13 @@ bool Maze::IsWall(cocos2d::Vec2 tileGridPos) const
 {
 	Sprite* tile = m_WallsLayer->getTileAt(tileGridPos);
 	// tile without a wall on it will be nullptr
+	return tile != nullptr;
+}
+
+bool Maze::IsWaypoint(cocos2d::Vec2 tileGridPos) const
+{
+	Sprite* tile = m_WallsLayer->getTileAt(tileGridPos);
+	// tile without a waypoint on it will be nullptr
 	return tile != nullptr;
 }
 
