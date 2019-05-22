@@ -77,8 +77,20 @@ void PlayerPawnController::HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, 
 		m_InputDirection = Direction::DOWN;
 		break;
 	}
-	/*default:
-		m_InputDirection = Direction::NONE;*/
+	}
+
+	if (m_PawnState == PawnState::WAITING)
+	{
+		if (m_InputDirection != Direction::NONE)
+		{
+			// Pawn should try to move in the input direction.
+			m_PawnDirection = m_InputDirection;
+
+			// Consume input.
+			m_InputDirection = Direction::NONE;
+
+			OnPawnReachedTargetPoint();
+		}
 	}
 }
 
