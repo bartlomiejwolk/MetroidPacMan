@@ -48,6 +48,7 @@ private:
 	// Updated in `OnPawnReachedTargetPoint()`.
 	cocos2d::Vec2 m_LastPawnTilePos = cocos2d::Vec2(1, 1);
 
+	// TODO rename to PawnMovementDirection
 	// The direction that the Pawn is currently heading towards.
 	Direction m_PawnDirection = Direction::NONE;
 
@@ -65,12 +66,15 @@ private:
 
 	void HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event);
 
-	void MovePacManRight();
-
 	bool TileValid(cocos2d::Vec2 tileMapPos);
 
 	// Sends commands to the Pawn to update it based on current PC state.
 	void UpdatePawn();
 
-	void MovePawn(Direction dir);
+	void HandleInputMovement();
+
+	void HandleContinuousMovement();
+
+	// Moves Pawn to tile pointed by `m_PawnDirection`.
+	void MovePawn(cocos2d::Vec2 gridPos);
 };
