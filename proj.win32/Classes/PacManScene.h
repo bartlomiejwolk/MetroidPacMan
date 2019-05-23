@@ -2,7 +2,6 @@
 
 #include "cocos2d.h"
 
-// TODO rename to SceneBase
 class PacManScene : public cocos2d::Scene
 {
 protected:

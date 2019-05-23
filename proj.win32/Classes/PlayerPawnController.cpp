@@ -41,7 +41,7 @@ void PlayerPawnController::SubscribeToInputEvents()
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
 }
 
-// TODO update `m_InputDirection` only when Pawn is near waypoint
+// TODO call `MovePawn_Input` only when Pawn is near waypoint
 void PlayerPawnController::HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event)
 {
 	switch (keyCode)
