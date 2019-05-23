@@ -34,10 +34,9 @@ void PlayerPawnController::onEnter()
 	// Set initial Pawn state and direction.
 	m_PawnDirection = Direction::RIGHT;
 	m_PawnState = PawnState::MOVING;
-	//MovePacManRight();
 
 	// Notify self that Pawn is ready to move.
-	OnPawnReachedTargetPoint();
+	UpdatePawn();
 }
 
 void PlayerPawnController::SubscribeToInputEvents()
@@ -89,7 +88,7 @@ void PlayerPawnController::HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, 
 			// Consume input.
 			m_InputDirection = Direction::NONE;
 
-			OnPawnReachedTargetPoint();
+			UpdatePawn();
 		}
 	}
 }
@@ -103,6 +102,23 @@ void PlayerPawnController::OnPawnReachedTargetPoint()
 {
 	CCLOG("OnPawnReachedTargetPoint");
 
+	UpdatePawn();
+}
+
+// TODO remove
+void PlayerPawnController::MovePacManRight()
+{
+	Vec2 worldPos = m_Maze->TileToWorldPos(Vec2(m_LastPawnTilePos.x + 1, 1));
+	m_PacMan->MoveToPoint(worldPos);
+}
+
+bool PlayerPawnController::TileValid(Vec2 tileMapPos)
+{
+	return !m_Maze->IsWall(tileMapPos);
+}
+
+void PlayerPawnController::UpdatePawn()
+{
 	m_LastPawnTilePos = Utils::GetNeighbourTilePos(m_LastPawnTilePos, m_PawnDirection);
 
 	CCLOG("m_LastPawnTilePos: (%f, %f)", m_LastPawnTilePos.x, m_LastPawnTilePos.y);
@@ -183,22 +199,11 @@ void PlayerPawnController::OnPawnReachedTargetPoint()
 		{
 			// Pawn should try to move in the input direction.
 			m_PawnDirection = m_InputDirection;
-			
+
 			// Consume input.
 			m_InputDirection = Direction::NONE;
-			
-			OnPawnReachedTargetPoint();
+
+			UpdatePawn();
 		}
 	}
-}
-
-void PlayerPawnController::MovePacManRight()
-{
-	Vec2 worldPos = m_Maze->TileToWorldPos(Vec2(m_LastPawnTilePos.x + 1, 1));
-	m_PacMan->MoveToPoint(worldPos);
-}
-
-bool PlayerPawnController::TileValid(Vec2 tileMapPos)
-{
-	return !m_Maze->IsWall(tileMapPos);
 }
