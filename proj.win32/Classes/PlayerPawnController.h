@@ -71,4 +71,6 @@ private:
 
 	// Sends commands to the Pawn to update it based on current PC state.
 	void UpdatePawn();
+
+	void MovePawn(Direction dir);
 };

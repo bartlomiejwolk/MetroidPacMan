@@ -134,63 +134,7 @@ void PlayerPawnController::UpdatePawn()
 		}
 	}
 
-	switch (m_PawnDirection)
-	{
-	case Direction::UP:
-	{
-		Vec2 nextTile = Vec2(m_LastPawnTilePos.x, m_LastPawnTilePos.y - 1);
-		if (!TileValid(nextTile))
-		{
-			m_PawnDirection = Direction::NONE;
-			break;
-		}
-		Vec2 worldPos = m_Maze->TileToWorldPos(nextTile);
-		m_PacMan->MoveToPoint(worldPos);
-		m_PawnState = PawnState::MOVING;
-		break;
-	}
-	case Direction::DOWN:
-	{
-		Vec2 nextTile = Vec2(m_LastPawnTilePos.x, m_LastPawnTilePos.y + 1);
-		if (!TileValid(nextTile))
-		{
-			m_PawnDirection = Direction::NONE;
-			break;
-		}
-		Vec2 worldPos = m_Maze->TileToWorldPos(nextTile);
-		m_PacMan->MoveToPoint(worldPos);
-		m_PawnState = PawnState::MOVING;
-		break;
-	}
-	case Direction::LEFT:
-	{
-		Vec2 nextTile = Vec2(m_LastPawnTilePos.x - 1, m_LastPawnTilePos.y);
-		if (!TileValid(nextTile))
-		{
-			m_PawnDirection = Direction::NONE;
-			break;
-		}
-		Vec2 worldPos = m_Maze->TileToWorldPos(nextTile);
-		m_PacMan->MoveToPoint(worldPos);
-		m_PawnState = PawnState::MOVING;
-		break;
-	}
-	case Direction::RIGHT:
-	{
-		Vec2 nextTile = Vec2(m_LastPawnTilePos.x + 1, m_LastPawnTilePos.y);
-		if (!TileValid(nextTile))
-		{
-			m_PawnDirection = Direction::NONE;
-			break;
-		}
-		Vec2 worldPos = m_Maze->TileToWorldPos(nextTile);
-		m_PacMan->MoveToPoint(worldPos);
-		m_PawnState = PawnState::MOVING;
-		break;
-	}
-	default:
-		break;
-	}
+	MovePawn(m_PawnDirection);
 
 	// Handle case when the Pawn is stuck against a wall.
 	if (m_PawnState == PawnState::WAITING)
@@ -206,4 +150,21 @@ void PlayerPawnController::UpdatePawn()
 			UpdatePawn();
 		}
 	}
+}
+
+void PlayerPawnController::MovePawn(Direction dir)
+{
+	// Check if target tile is valid.
+	Vec2 targetTilePos = Utils::GetNeighbourTilePos(m_LastPawnTilePos, dir);
+	if (!TileValid(targetTilePos))
+	{
+		m_PawnDirection = Direction::NONE;
+		return;
+	}
+
+	// Move Pawn.
+	Vec2 worldPos = m_Maze->TileToWorldPos(targetTilePos);
+	m_PacMan->MoveToPoint(worldPos);
+	
+	m_PawnState = PawnState::MOVING;
 }
