@@ -46,11 +46,12 @@ private:
 
 	// Last tile that the Pawn arrived to in tilemap coordinates.
 	// Updated in `OnPawnReachedTargetPoint()`.
-	cocos2d::Vec2 m_LastPawnTilePos = cocos2d::Vec2(1, 1);
+	// Initialized to Pawn default postion in the Maze.
+	cocos2d::Vec2 m_CurrentPawnTilePos = cocos2d::Vec2(14, 17);
 
-	// TODO rename to PawnMovementDirection
 	// The direction that the Pawn is currently heading towards.
-	Direction m_PawnDirection = Direction::NONE;
+	// Also defines the direction that the Pawn move towards.
+	Direction m_PawnMovementDir = Direction::RIGHT;
 
 	// Updated with player input.
 	Direction m_InputDirection = Direction::NONE;
@@ -66,15 +67,16 @@ private:
 
 	void HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event);
 
-	bool TileValid(cocos2d::Vec2 tileMapPos);
+	bool IsTileValid(cocos2d::Vec2 tileMapPos);
 
-	// Sends commands to the Pawn to update it based on current PC state.
-	void UpdatePawn();
+	// Moves Pawn using player input.
+	// Called only from `OnPawnReachedTargetPoint()`.
+	void MovePawn_Input();
 
-	void HandleInputMovement();
+	// Moves Pawn using its current movement direction.
+	// Called only from `OnPawnReachedTargetPoint()`.
+	void MovePawn_Continuous();
 
-	void HandleContinuousMovement();
-
-	// Moves Pawn to tile pointed by `m_PawnDirection`.
+	// Moves Pawn to tile.
 	void MovePawn(cocos2d::Vec2 gridPos);
 };

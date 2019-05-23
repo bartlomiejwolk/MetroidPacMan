@@ -19,7 +19,6 @@ PlayerPawnController* PlayerPawnController::create()
 bool PlayerPawnController::init()
 {
 	SubscribeToInputEvents();
-
 	return true;
 }
 
@@ -28,15 +27,10 @@ void PlayerPawnController::onEnter()
 	Node::onEnter();
 
 	// set PacMan initial position
-	Vec2 newPos = m_Maze->TileToWorldPos(m_LastPawnTilePos);
+	Vec2 newPos = m_Maze->TileToWorldPos(m_CurrentPawnTilePos);
 	m_PacMan->SetPosition(newPos);
 	
-	// Set initial Pawn state and direction.
-	m_PawnDirection = Direction::RIGHT;
-	//m_PawnState = PawnState::MOVING;
-
-	// Notify self that Pawn is ready to move.
-	HandleContinuousMovement();
+	MovePawn_Continuous();
 }
 
 void PlayerPawnController::SubscribeToInputEvents()
@@ -78,13 +72,7 @@ void PlayerPawnController::HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, 
 	}
 	}
 
-	if (m_PawnState == PawnState::WAITING)
-	{
-		if (m_InputDirection != Direction::NONE)
-		{
-			HandleInputMovement();
-		}
-	}
+	MovePawn_Input();
 }
 
 void PlayerPawnController::update(float delta)
@@ -94,73 +82,66 @@ void PlayerPawnController::update(float delta)
 // TODO create custom macro to log Vec2
 void PlayerPawnController::OnPawnReachedTargetPoint()
 {
-	CCLOG("OnPawnReachedTargetPoint");
+	m_CurrentPawnTilePos = Utils::GetNeighbourTilePos(m_CurrentPawnTilePos, m_PawnMovementDir);
 
-	// TODO if this is called multiple time in a frame, the `m_LastPawnTilePos` will become invalid
-	m_LastPawnTilePos = Utils::GetNeighbourTilePos(m_LastPawnTilePos, m_PawnDirection);
-
-	CCLOG("m_LastPawnTilePos: (%f, %f)", m_LastPawnTilePos.x, m_LastPawnTilePos.y);
+	CCLOG("updated m_LastPawnTilePos: (%f, %f)", m_CurrentPawnTilePos.x, m_CurrentPawnTilePos.y);
 	m_PawnState = PawnState::WAITING;
 
-	HandleInputMovement();
-	HandleContinuousMovement();
+	// Only one of these two methods will move the Pawn.
+	// Execution order matters!
+	MovePawn_Input();
+	MovePawn_Continuous();
 }
 
-bool PlayerPawnController::TileValid(Vec2 tileMapPos)
+bool PlayerPawnController::IsTileValid(Vec2 tileMapPos)
 {
 	return !m_Maze->IsWall(tileMapPos);
 }
 
-// TODO remove
-void PlayerPawnController::UpdatePawn()
+void PlayerPawnController::MovePawn_Input()
 {
-	
-}
+	if (m_PawnState != PawnState::WAITING)
+	{
+		return;
+	}
 
-void PlayerPawnController::HandleInputMovement()
-{
 	if (m_InputDirection == Direction::NONE)
 	{
 		return;
 	}
 	
-	if (m_PawnState == PawnState::MOVING)
-	{
-		return;
-	}
-
 	// Check if target tile is valid.
-	Vec2 targetTile = Utils::GetNeighbourTilePos(m_LastPawnTilePos, m_InputDirection);
-	if (!TileValid(targetTile))
+	Vec2 targetTile = Utils::GetNeighbourTilePos(m_CurrentPawnTilePos, m_InputDirection);
+	if (!IsTileValid(targetTile))
 	{
 		return;
 	}
 
-	m_PawnDirection = m_InputDirection;
+	m_PawnMovementDir = m_InputDirection;
 	m_InputDirection = Direction::NONE; // consume input
 	m_PawnState = PawnState::MOVING;
 
 	MovePawn(targetTile);
 }
 
-void PlayerPawnController::HandleContinuousMovement()
+void PlayerPawnController::MovePawn_Continuous()
 {
 	// Pawn is already moving due to player input.
-	if (m_PawnState == PawnState::MOVING)
+	if (m_PawnState != PawnState::WAITING)
 	{
 		return;
 	}
 
 	// Check if target tile is valid.
-	Vec2 targetTilePos = Utils::GetNeighbourTilePos(m_LastPawnTilePos, m_PawnDirection);
-	if (!TileValid(targetTilePos))
+	Vec2 targetTilePos = Utils::GetNeighbourTilePos(m_CurrentPawnTilePos, m_PawnMovementDir);
+	if (!IsTileValid(targetTilePos))
 	{
-		m_PawnDirection = Direction::NONE;
+		m_PawnMovementDir = Direction::NONE;
 		return;
 	}
 
-	MovePawn(targetTilePos);
 	m_PawnState = PawnState::MOVING;
+	MovePawn(targetTilePos);
 }
 
 void PlayerPawnController::MovePawn(Vec2 gridPos)
