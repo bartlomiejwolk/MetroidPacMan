@@ -29,6 +29,8 @@
     <ClCompile Include="Classes\PlayerPawnController.cpp" />
     <ClCompile Include="Classes\Pawn.cpp" />
     <ClCompile Include="Classes\Akabei.cpp" />
+    <ClCompile Include="Classes\PawnController.cpp" />
+    <ClCompile Include="Classes\AIPawnController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\GameplayScene.h" />
@@ -47,5 +49,7 @@
     <ClInclude Include="Classes\Pawn.h" />
     <ClInclude Include="Classes\Akabei.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Classes\PawnController.h" />
+    <ClInclude Include="Classes\AIPawnController.h" />
   </ItemGroup>
 </Project>

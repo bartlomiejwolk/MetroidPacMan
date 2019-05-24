@@ -5,6 +5,7 @@
 #include "PacMan.h"
 #include "Maze.h"
 #include "PlayerPawnController.h"
+#include "AIPawnController.h"
 
 USING_NS_CC;
 
@@ -74,12 +75,22 @@ bool GameplayScene::init()
 	{
 		PlayerPawnController* ppc = PlayerPawnController::create();
 		ppc->SetMazeRef(m_Maze);
-		ppc->SetPacManRef(m_PacMan);
+		ppc->SetPawnRef(m_PacMan);
 		this->addChild(ppc); // call it only after the PC is fully initialized
 
 		// TODO move to PC
 		// subscribe PC to PacMan signal
 		m_PacMan->TargetPointReached.connect_member(ppc, &PlayerPawnController::OnPawnReachedTargetPoint);
+	}
+
+	// create AI controller for Akabei ghost
+	{
+		AIPawnController* aipc = AIPawnController::create();
+		aipc->SetMazeRef(m_Maze);
+		aipc->SetPawnRef(m_Akabei);
+		this->addChild(aipc);
+
+		m_Akabei->TargetPointReached.connect_member(aipc, &AIPawnController::OnPawnReachedTargetPoint);
 	}
 
     return true;

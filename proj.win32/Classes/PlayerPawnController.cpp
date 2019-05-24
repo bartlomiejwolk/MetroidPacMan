@@ -28,7 +28,7 @@ void PlayerPawnController::onEnter()
 
 	// set PacMan initial position
 	Vec2 newPos = m_Maze->TileToWorldPos(m_CurrentPawnTilePos);
-	m_PacMan->SetPosition(newPos);
+	m_Pawn->SetPosition(newPos);
 	
 	MovePawn_Continuous();
 }
@@ -147,5 +147,5 @@ void PlayerPawnController::MovePawn_Continuous()
 void PlayerPawnController::MovePawn(Vec2 gridPos)
 {
 	Vec2 worldPos = m_Maze->TileToWorldPos(gridPos);
-	m_PacMan->MoveToPoint(worldPos);
+	m_Pawn->MoveToPoint(worldPos);
 }

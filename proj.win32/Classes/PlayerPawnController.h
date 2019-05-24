@@ -4,11 +4,10 @@
 #include "Maze.h"
 #include "PacMan.h"
 #include "Enums.h"
+#include "PawnController.h"
 
-class PlayerPawnController : public cocos2d::Node
+class PlayerPawnController : public PawnController
 {
-	
-
 	enum class PawnState
 	{
 		// Pawn is waiting new target point coordinates.
@@ -23,26 +22,9 @@ public:
 
 	virtual void update(float delta) override;
 
-	void OnPawnReachedTargetPoint();
-
-	// TODO delete. Initialize Maze during construction
-	void SetMazeRef(Maze* maze)
-	{
-		m_Maze = maze;
-	}
-
-	// TODO replace with possession mechanizm
-	void SetPacManRef(PacMan* pacMan)
-	{
-		m_PacMan = pacMan;
-	}
+	void OnPawnReachedTargetPoint() override;
 
 private:
-	// TODO use shared pointer
-	Maze* m_Maze;
-
-	// TODO use shared pointer
-	PacMan* m_PacMan;
 
 	// Last tile that the Pawn arrived to in tilemap coordinates.
 	// Updated in `OnPawnReachedTargetPoint()`.
