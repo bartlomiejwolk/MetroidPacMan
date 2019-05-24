@@ -5,6 +5,7 @@
 #include "PacManScene.h"
 #include "Maze.h"
 #include "PacMan.h"
+#include "Akabei.h"
 
 class GameplayScene : public PacManScene
 {
@@ -44,6 +45,8 @@ private:
 
 	// TODO use unique ptr
 	PacMan* m_PacMan;
+
+	Akabei* m_Akabei;
 
 	virtual void HandleInput(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event) override;
 

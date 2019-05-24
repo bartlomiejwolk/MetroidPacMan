@@ -2,39 +2,20 @@
 
 #include "cocos2d.h"
 #include "Signal.h"
+#include "Pawn.h"
 
 // `PacMan` class should not depend on the `Maze` class.
-class PacMan
+class PacMan : public Pawn
 {
 public:
+	// Generate constructor equal to that of the base class.
+	// https://softwareengineering.stackexchange.com/a/197901
+	//using Pawn::Pawn;
+
 	PacMan(cocos2d::SpriteFrameCache* frameCache);
-	
-	~PacMan();
 
-	Signal<> TargetPointReached;
+protected:
+	void CreateSprite() override;
 
-	// Returns PacMan sprite node.
-	cocos2d::Sprite* GetSpriteNode()
-	{
-		return m_PacManSprite;
-	}
-
-	// Sets PacMan sprite position relative to the parent node.
-	void SetPosition(cocos2d::Vec2 position)
-	{
-		m_PacManSprite->setPosition(position);
-	}
-
-	// Animates PacMan sprite movement to GL point in world space.
-	void MoveToPoint(cocos2d::Vec2 point);
-
-private:
-	cocos2d::SpriteFrameCache* m_SpriteFrameCache;
-
-	cocos2d::Sprite* m_PacManSprite;
-
-	// Creates PacMan sprite and animates it.
-	// Initializes related class fields.
-	void CreatePacManSprite();
 };
 

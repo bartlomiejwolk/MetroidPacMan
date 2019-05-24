@@ -4,25 +4,20 @@
 
 USING_NS_CC;
 
-PacMan::PacMan(SpriteFrameCache* frameCache)
+PacMan::PacMan(cocos2d::SpriteFrameCache * frameCache) : Pawn(frameCache)
 {
-	m_SpriteFrameCache = frameCache;
-	CreatePacManSprite();
+	CreateSprite();
 }
 
-PacMan::~PacMan()
-{
-}
-
-void PacMan::CreatePacManSprite()
+void PacMan::CreateSprite()
 {
 	// create sprite
-	m_PacManSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
+	m_PawnSprite = Sprite::createWithSpriteFrameName("image_part_051.png");
 	// TODO create method to set anchor point and set it from the gameplay scene
 	// offset anchor point to avoid sprite clipping into maze walls
-	m_PacManSprite->setAnchorPoint(Vec2(0.25f, 0.25f));
+	m_PawnSprite->setAnchorPoint(Vec2(0.25f, 0.25f));
 	// TODO define default position in header file
-	m_PacManSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
+	m_PawnSprite->setPosition(Utils::GetScreenPoint(0.5f, 0.5f));
 
 	// get sprite frames
 	Vector<SpriteFrame*> frames = Vector<SpriteFrame*>();
@@ -34,14 +29,5 @@ void PacMan::CreatePacManSprite()
 	// create and run animation
 	auto animation = Animation::createWithSpriteFrames(frames, 0.1f, 1);
 	auto animate = Animate::create(animation);
-	m_PacManSprite->runAction(RepeatForever::create(animate));
-}
-
-void PacMan::MoveToPoint(Vec2 point)
-{
-	// TODO magic number
-	MoveTo* moveToAction = MoveTo::create(0.3f, point);
-	auto callback = CallFunc::create([this]() { PacMan::TargetPointReached.emit(); });
-	auto sequence = Sequence::create(moveToAction, callback, nullptr);
-	m_PacManSprite->runAction(sequence);
+	m_PawnSprite->runAction(RepeatForever::create(animate));
 }

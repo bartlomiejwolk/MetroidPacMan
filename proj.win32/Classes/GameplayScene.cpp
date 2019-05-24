@@ -48,6 +48,12 @@ bool GameplayScene::init()
 		this->addChild(m_PacMan->GetSpriteNode());
 	}
 
+	// create Akabei ghost
+	{
+		m_Akabei = new Akabei(m_Maze->GetSpriteFrameCache());
+		this->addChild(m_Akabei->GetSpriteNode());
+	}
+
 	// TEST
 	{
 		/*auto powerUpObject = m_ObjectGroup->getObject("PowerUpTopLeft");
