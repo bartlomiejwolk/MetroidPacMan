@@ -25,7 +25,7 @@ public:
 		m_PacManSprite->setPosition(position);
 	}
 
-	// Moves PacMan sprite to GL point in world space.
+	// Animates PacMan sprite movement to GL point in world space.
 	void MoveToPoint(cocos2d::Vec2 point);
 
 private:
