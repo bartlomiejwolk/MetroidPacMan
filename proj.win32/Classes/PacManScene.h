@@ -19,8 +19,8 @@ protected:
 	// Font used for all text in the game.
 	const std::string m_FontFilePath = "fonts/GameCube.ttf";
 
-	// All UI placed above the Maze is attached to this Node.
-	// It allows to move all top UI elements by moving a single Node.
+	// All UI placed above the Maze is attached to this Tile.
+	// It allows to move all top UI elements by moving a single Tile.
 	// Anchor point and position is set to (0, 0) upon creation. Initialized in `init()`.
 	cocos2d::Node m_UITop;
 

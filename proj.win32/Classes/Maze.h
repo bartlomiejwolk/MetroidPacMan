@@ -2,6 +2,8 @@
 
 #include "cocos2d.h"
 #include "Enums.h"
+#include "Tile.h"
+#include <array>
 
 // TODO consider making it static or a singleton
 // TODO create `Sprite* GetTileAt(Vec2)`. Use `GetBackgroundLayer()->getTileAt(Vec2)`
@@ -29,8 +31,10 @@ public:
 
 	// Returns tile position in world space. Tile anchor point is bottom-left.
 	// First tile is at (0, 0), top-left of the screen.
-	// tileGridPos First element - column, second - row (it's defined this way in the TMX file).
-	cocos2d::Vec2 TileToWorldPos(const cocos2d::Vec2& tileGridPos) const;
+	// tileGridPos X: column, Y: row (it's defined this way in the TMX file).
+	cocos2d::Vec2 TileToWorldPos(const cocos2d::Vec2& gridPos) const;
+
+	MetroidPacMan::Tile* GridPosToTile(const cocos2d::Vec2& gridPos) const;
 
 	bool IsWall(cocos2d::Vec2 tileGridPos) const;
 
@@ -58,6 +62,22 @@ private:
 
 	// Loads `.plist` file.
 	void LoadPropertyList();
+
+	void InitGrid();
+
+	static const int GRID_ROWS = 31;
+
+	static const int GRID_COLUMNS = 28;
+
+	// TODO create typedef/using for 2d array type declaration
+	// 2D array of grid tiles used for pathfinding.
+	std::array<std::array<MetroidPacMan::Tile, GRID_ROWS>, GRID_COLUMNS> m_Grid;
+
+public:
+	std::array<std::array<MetroidPacMan::Tile, GRID_ROWS>, GRID_COLUMNS>& GetGrid()
+	{
+		return m_Grid;
+	}
 
 };
 
