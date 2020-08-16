@@ -11,6 +11,19 @@ namespace MetroidPacMan
 
 		Tile(cocos2d::Vec2 gridPos);
 
+		// Required by std::set.
+		// Current implementation doesn't serve any purpose.
+		// TODO fix implementation to make sure this class works well with the std::set
+		bool operator<(const Tile& rhs) const
+		{
+			return GridPosition.x < rhs.GridPosition.x;
+		}
+
+		bool operator==(const Tile& rhs)
+		{
+			return GridPosition.x == rhs.GridPosition.x && GridPosition.y == rhs.GridPosition.y;
+		}
+
 		cocos2d::Size Dimentions;
 
 		// X : row, Y : column

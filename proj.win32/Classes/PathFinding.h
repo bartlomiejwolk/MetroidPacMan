@@ -6,7 +6,7 @@
 class PathFinding
 {
 public:
-	PathFinding(const Maze* maze);
+	PathFinding(Maze* maze);
 	virtual ~PathFinding();
 
 	// startPos Position of the start tile in grid coordinates.
@@ -15,6 +15,6 @@ public:
 	void FindPath(cocos2d::Vec2 startPos, cocos2d::Vec2 endPos);
 
 private:
-	const Maze* m_Maze;
+	Maze* m_Maze;
 };
 

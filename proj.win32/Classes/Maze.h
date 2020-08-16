@@ -34,7 +34,8 @@ public:
 	// tileGridPos X: column, Y: row (it's defined this way in the TMX file).
 	cocos2d::Vec2 TileToWorldPos(const cocos2d::Vec2& gridPos) const;
 
-	MetroidPacMan::Tile* GridPosToTile(const cocos2d::Vec2& gridPos) const;
+	// TODO shouldn't it be GetTileAtPos() ?
+	MetroidPacMan::Tile* GridPosToTile(const cocos2d::Vec2& gridPos);
 
 	bool IsWall(cocos2d::Vec2 tileGridPos) const;
 

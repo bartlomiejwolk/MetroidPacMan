@@ -58,9 +58,9 @@ Vec2 Maze::TileToWorldPos(const Vec2 & gridPos) const
 	return tileWorldPos;
 }
 
-MetroidPacMan::Tile * Maze::GridPosToTile(const cocos2d::Vec2& gridPos) const
+MetroidPacMan::Tile* Maze::GridPosToTile(const cocos2d::Vec2& gridPos)
 {
-	return nullptr;
+	return &m_Grid[gridPos.y][gridPos.x];
 }
 
 bool Maze::IsWall(cocos2d::Vec2 tileGridPos) const
